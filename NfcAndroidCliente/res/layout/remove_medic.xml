@@ -1,0 +1,84 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/medicslogo"
+    android:gravity="start" >
+
+    <Button
+        android:id="@+id/salirRemoveMedic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="141dp"
+        android:text="Regresar" />
+
+    <TextView
+        android:id="@+id/textRemoveMedic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="Desligar Medico"
+        android:textColor="#ffffff" >
+    </TextView>
+
+    <Button
+        android:id="@+id/buttonDerecha"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:text="->"
+        android:textColor="#ffffff"
+        android:textSize="30dp" />
+
+    <TextView
+        android:id="@+id/textViewMedicoRemover"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/buttonDerecha"
+        android:layout_alignTop="@+id/buttonDerecha"
+        android:layout_toLeftOf="@+id/buttonDerecha"
+        android:layout_toRightOf="@+id/buttonIzquierda"
+        android:gravity="center"
+        android:text="Nombre Medico"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#ffffff" />
+
+    <Button
+        android:id="@+id/buttonIzquierda"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textViewMedicoRemover"
+        android:layout_alignParentLeft="true"
+        android:gravity="center"
+        android:text="&lt;-"
+        android:textColor="#ffffff"
+        android:textSize="30dp" />
+
+    <ExpandableListView
+        android:id="@+id/expandableListViewMedicos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/buttonDerecha"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textRemoveMedic" >
+
+    </ExpandableListView>
+
+    <Button
+        android:id="@+id/buttonBorrarMedico"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/salirRemoveMedic"
+        android:layout_alignBottom="@+id/salirRemoveMedic"
+        android:layout_toLeftOf="@+id/salirRemoveMedic"
+        android:text="Borrar" />
+
+</RelativeLayout>

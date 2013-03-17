@@ -1,0 +1,85 @@
+package com.example.nfcandroid;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URLEncoder;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import android.os.AsyncTask;
+import android.widget.TextView;
+
+//public class GetProfileFromUrl extends AsyncTask<Void, Void, String> {
+//	String URL;
+//	String IpAdd;
+//	TextView editEmailAddress;
+//	TextView editTelefonoCasa;
+//	TextView editTelefonoCelular;
+//	TextView editDireccion;
+//	StaticData static_data = new StaticData();
+//	
+//	public GetProfileFromUrl(String URL, String IpAdd, final TextView editEmailAddress, final TextView editTelefonoCasa,	final TextView editTelefonoCelular, final TextView editDireccion) {
+//		this.URL = URL;
+//		this.IpAdd = IpAdd;
+//		this.editEmailAddress = editEmailAddress;
+//		this.editTelefonoCasa = editTelefonoCasa;
+//		this.editTelefonoCelular = editTelefonoCelular;
+//		this.editDireccion = editDireccion;
+//	}
+//
+//	protected String getASCIIContentFromEntity(HttpEntity entity)
+//			throws IllegalStateException, IOException {
+//		InputStream in = entity.getContent();
+//		StringBuffer out = new StringBuffer();
+//		int n = 1;
+//		while (n > 0) {
+//			byte[] b = new byte[4096];
+//			n = in.read(b);
+//			if (n > 0)
+//				out.append(new String(b, 0, n));
+//		}
+//		return out.toString();
+//	}
+//
+//	@Override
+//	protected String doInBackground(Void... params) {
+//		HttpClient httpClient = new DefaultHttpClient();
+//		String encoded = URL.replaceAll("en", "");
+//		String encryptEncode = "";
+//		try {
+//			String encrypt = new Secure().encrypt(encoded, static_data.Password);
+//			encryptEncode = URLEncoder.encode(encrypt.toString(), "utf-8");
+//		} catch (Exception e) {
+//		}
+//		HttpGet httpGet = new HttpGet("http://" + IpAdd	+ ":4001/api/user?id=" + static_data.Id + "&url=" + encryptEncode);
+//		String text = null;
+//		try {
+//			HttpResponse response = httpClient.execute(httpGet);
+//			HttpEntity entity = response.getEntity();
+//			if (entity != null) {
+//				text = getASCIIContentFromEntity(entity);
+//			}
+//		} catch (Exception e) {
+//		}
+//		return text;
+//	}
+//
+//	protected void onPostExecute(String results) {
+//		if (results != null) {
+//			JSONObject json = null;
+//			try {
+//				json = new JSONObject(results);
+//				editEmailAddress.setText(json.get("Email").toString());
+//				editTelefonoCasa.setText(json.get("TelefonoResidencial").toString());
+//				editTelefonoCelular.setText(json.get("TelefonoCelular").toString());
+//				editDireccion.setText(json.get("Direccion").toString());
+//			} catch (JSONException e) {	}
+//		}
+//	}
+//}

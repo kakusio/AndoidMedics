@@ -1,0 +1,42 @@
+package com.example.nfcandroid;
+
+import java.util.Date;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+public class Persona {
+	public String Nombres;
+	public String Apellidos;
+	public String Sexo;
+	public String Cedula;
+	public Date FechaDeNacimiento;
+	public String Email;
+	public String TelefonoResidencial;
+	public String TelefonoCelular;
+	public int idProvincia;
+	public String Direccion;
+	public String TipoDeSangre;
+	public Date FechaDeDefuncion;
+	public String Username;
+	public String Password;
+	
+	public void ParseFromJson(JSONObject json){
+		try {
+			Nombres = json.get("Nombres").toString();
+			Apellidos = json.get("Apellidos").toString();
+			Sexo = json.get("Sexo").toString();
+			Cedula = json.get("Cedula").toString();
+			FechaDeNacimiento = (Date) json.get("FechaDeNacimiento");
+			Email = json.get("Email").toString();
+			TelefonoResidencial = json.get("TelefonoResidencial").toString();
+			TelefonoCelular = json.get("TelefonoCelular").toString();
+			idProvincia = (Integer) json.get("idProvincia");
+			TipoDeSangre = json.get("TipoDeSangre").toString();
+			FechaDeDefuncion = (Date) json.get("FechaDeDefuncion");
+			Username = json.get("Username").toString();
+			Password = json.get("Password").toString();
+		} catch (JSONException e) {
+		}
+	}
+}

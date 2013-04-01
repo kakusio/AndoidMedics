@@ -1,0 +1,12 @@
+package com.example.nfcandroid.Activities;
+
+import android.app.Activity;
+import android.widget.Toast;
+
+public class ToastClass extends Activity{
+
+	public void ToastPeticionExitosa() {
+		Toast.makeText(this, "Petición Exitosa", Toast.LENGTH_SHORT).show();
+	}
+
+}

@@ -1,0 +1,90 @@
+package com.example.nfcandroid.Activities;
+
+import java.util.ArrayList;
+
+import android.app.Activity;
+import android.content.Context;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.nfcandroid.EditableInformationPersona;
+import com.example.nfcandroid.R;
+import com.example.nfcandroid.StaticData;
+import com.example.nfcandroid.Utility.PutToUrl;
+
+public class EditProfile extends Activity {
+
+	private static Toast toastPeticionExitosa;
+	private ArrayList<EditableInformationPersona> editable_information;
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.edit_profile);
+		toastPeticionExitosa =  Toast.makeText(this, "Petición Exitosa", Toast.LENGTH_SHORT);
+		editable_information = EditableInformationPersona.GetEditableInformation();
+		String[] arr = new String[editable_information.size()];
+		for (int i = 0; i < editable_information.size(); i++) {
+			arr[i] = editable_information.get(i).Name;  
+			editable_information.get(i).Value = getIntent().getExtras().getString(editable_information.get(i).Name);
+		}
+
+		MyCustomAdapter listAdaper = new MyCustomAdapter(EditProfile.this, R.layout.edit_row, arr);
+		
+//		final TextView editEmailAddress = (TextView) findViewById(R.id.editEmailAddress);
+//		final TextView editTelefonoCasa = (TextView) findViewById(R.id.editTelefonoCasa);
+//		final TextView editTelefonoCelular = (TextView) findViewById(R.id.editTelefonoCelular);
+//		final TextView editDireccion = (TextView) findViewById(R.id.editDireccion);
+//		
+//		editEmailAddress.setText(getIntent().getExtras().getString("Email"));
+//		editTelefonoCasa.setText(getIntent().getExtras().getString("TelefonoResidencial"));
+//		editTelefonoCelular.setText(getIntent().getExtras().getString("TelefonoCelular"));
+//		editDireccion.setText(getIntent().getExtras().getString("Direccion"));
+		
+		final Button buttonEnviarProfile = (Button) findViewById(R.id.buttonEnviarProfile);
+		buttonEnviarProfile.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				
+				String URL = "/api/personas/" + getIntent().getExtras().getString("idPersona");
+				for (int i = 0; i < editable_information.size(); i++) {
+					if (i == 0) URL += "?";
+					else URL += "&";
+					URL += editable_information.get(i).Name + "=" + editable_information.get(i).Value;
+				}
+					
+				new PutToUrl(URL, StaticData.IpAdd, toastPeticionExitosa).execute();
+			}
+		});
+		
+	}
+	
+	public class MyCustomAdapter extends ArrayAdapter<String> {
+		String[] arr;
+		public MyCustomAdapter(Context context, int textViewResourceId,	String[] arr) {
+			super(context, textViewResourceId, arr);
+			this.arr =arr;
+		}
+		@Override
+		public View getView(final int position, View convertView, final ViewGroup parent) {			
+			View row = convertView;
+	        if(row==null){
+				LayoutInflater inflater=getLayoutInflater();
+				row=inflater.inflate(R.layout.edit_row, parent, false);	
+			}
+	        TextView text=(TextView)row.findViewById(R.id.text);
+	        EditText edit=(EditText)row.findViewById(R.id.edit);
+			
+			text.setText(arr[position]);
+			edit.setText(arr[position]);
+
+			return row;	
+		}	
+	}
+}
+

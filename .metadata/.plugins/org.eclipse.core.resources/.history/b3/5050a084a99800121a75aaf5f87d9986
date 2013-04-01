@@ -1,0 +1,84 @@
+package com.example.nfcandroid.Activities;
+
+import java.net.URLEncoder;
+import java.util.ArrayList;
+
+import android.app.Activity;
+import android.content.Context;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ExpandableListView;
+import android.widget.TextView;
+
+import com.example.nfcandroid.Persona;
+import com.example.nfcandroid.R;
+import com.example.nfcandroid.StaticData;
+import com.example.nfcandroid.Utility.AsyncWebAPIPersona;
+import com.example.nfcandroid.Utility.Secure;
+
+public class RemoveMedic extends Activity {
+	private ArrayList<Persona> personas;
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.remove_medic);
+		
+		String idPersona = getIntent().getExtras().getString("idPersona");
+		String Password = getIntent().getExtras().getString("Password");
+		String Username = getIntent().getExtras().getString("Username");
+		
+		
+		String URL = "/api/personas/GetMedicos?id=" + idPersona;		
+		String encoded = URL.replaceAll("en", "");
+		String encryptEncode = "";
+		try {
+			String encrypt = new Secure().encrypt(encoded, Password);
+			encryptEncode = URLEncoder.encode(encrypt.toString(), "utf-8");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		String agenda_url = "http://" + StaticData.IpAdd	+ ":4001/api/user?id=" + Username + "&url=" + encryptEncode;
+		
+		
+		
+		
+		new AsyncWebAPIPersona(RemoveMedic.this).execute(agenda_url);
+		
+	}
+	
+	public class MyCustomAdapter extends ArrayAdapter<String> {
+		String[] arr;
+		public MyCustomAdapter(Context context, int textViewResourceId,	String[] arr) {
+			super(context, textViewResourceId, arr);
+			this.arr =arr;
+		}
+		@Override
+		public View getView(final int position, View convertView, final ViewGroup parent) {			
+			View row = convertView;
+	        if(row==null){
+				LayoutInflater inflater=getLayoutInflater();
+				row=inflater.inflate(R.layout.remove_medic_row, parent, false);	
+			}
+	        String name = personas.get(position).Nombres;	        
+	        TextView text=(TextView)row.findViewById(R.id.text);			
+			text.setText(name);
+			return row;	
+		}	
+	}
+
+	public void setPersonas(ArrayList<Persona> persona) {
+		personas = persona;
+		String[] arr = new String[personas.size()];
+		for (int i = 0; i < personas.size(); i++) {
+			arr[i] = personas.get(i).Nombres;  
+		}
+		
+		MyCustomAdapter listAdaper = new MyCustomAdapter(RemoveMedic.this, R.layout.remove_medic_row, arr);
+		ExpandableListView expandableListViewMedicos = (ExpandableListView) findViewById(R.id.expandableListViewMedicos);
+		expandableListViewMedicos.setAdapter(listAdaper);
+	}
+}

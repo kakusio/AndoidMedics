@@ -1,0 +1,72 @@
+package com.example.nfcandroid.Activities;
+
+import java.util.ArrayList;
+
+import com.example.nfcandroid.EditableInformationPersona;
+import com.example.nfcandroid.Persona;
+import com.example.nfcandroid.R;
+import com.example.nfcandroid.Activities.EditProfile.MyCustomAdapter;
+
+import android.app.Activity;
+import android.content.Context;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ExpandableListView;
+import android.widget.ListView;
+import android.widget.TextView;
+
+public class RemoveMedic extends Activity {
+	private ArrayList<Persona> personas;
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.remove_medic);
+
+		personas = new ArrayList<Persona>();
+		String[] arr = new String[personas.size()];
+		for (int i = 0; i < personas.size(); i++) {
+			arr[i] = personas.get(i).Nombres;  
+			personas.get(i).setValue(getIntent().getExtras().getString(personas.get(i).getName()));
+		}
+		
+		MyCustomAdapter listAdaper = new MyCustomAdapter(RemoveMedic.this, R.layout.remove_medic_row, arr);
+		ExpandableListView expandableListViewMedicos = (ExpandableListView) findViewById(R.id.expandableListViewMedicos);
+		expandableListViewMedicos.setAdapter(listAdaper);
+		
+	}
+	
+	public class MyCustomAdapter extends ArrayAdapter<String> {
+		String[] arr;
+		public MyCustomAdapter(Context context, int textViewResourceId,	String[] arr) {
+			super(context, textViewResourceId, arr);
+			this.arr =arr;
+		}
+		@Override
+		public View getView(final int position, View convertView, final ViewGroup parent) {			
+			View row = convertView;
+	        if(row==null){
+				LayoutInflater inflater=getLayoutInflater();
+				row=inflater.inflate(R.layout.remove_medic_row, parent, false);	
+			}
+	        String name = personas.get(position).getPront();
+	        String value = personas.get(position).getValue();
+	        int id = personas.get(position).getId();
+	        
+	        TextView text=(TextView)row.findViewById(R.id.text);
+	        EditText edit=(EditText)row.findViewById(R.id.edit);
+	        if (edit == null) edit = (EditText)row.findViewById(id);
+			
+			text.setText(name);
+			edit.setText(value);
+			edit.setId(id);
+
+			return row;	
+		}	
+	}
+}

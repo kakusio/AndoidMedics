@@ -1,0 +1,95 @@
+package com.example.nfcandroid.Utility;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URLEncoder;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.example.nfcandroid.MedicsClientes;
+import com.example.nfcandroid.Persona;
+import com.example.nfcandroid.StaticData;
+
+import android.os.AsyncTask;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
+public class GetFromUrl extends AsyncTask<Void, Void, String> {
+	String URL;
+	String IpAdd;
+	TextView doctorName;
+	Button agregarPariente;
+	Button agregarExamen;
+	Button editarPerfil;
+	Button desligarMedico;
+	Persona user;
+	
+	public GetFromUrl(String URL, String IpAdd, final TextView doctorName, final Button agregarPariente, final Button agregarExamen, final Button editarPerfil, final Button desligarMedico, final Persona user) {
+		this.URL = URL;
+		this.IpAdd = IpAdd;
+		this.doctorName = doctorName;
+		this.agregarPariente = agregarPariente;
+		this.agregarExamen = agregarExamen;
+		this.editarPerfil = editarPerfil;
+		this.desligarMedico = desligarMedico;
+		this.user = user;
+	}
+
+	protected String getASCIIContentFromEntity(HttpEntity entity)
+			throws IllegalStateException, IOException {
+		InputStream in = entity.getContent();
+		StringBuffer out = new StringBuffer();
+		int n = 1;
+		while (n > 0) {
+			byte[] b = new byte[4096];
+			n = in.read(b);
+			if (n > 0)
+				out.append(new String(b, 0, n));
+		}
+		return out.toString();
+	}
+
+	@Override
+	protected String doInBackground(Void... params) {
+		HttpClient httpClient = new DefaultHttpClient();
+		String encoded = URL.replaceAll("en", "");
+		String encryptEncode = "";
+		try {
+			String encrypt = new Secure().encrypt(encoded, StaticData.Password);
+			encryptEncode = URLEncoder.encode(encrypt.toString(), "utf-8");
+		} catch (Exception e) {
+		}
+		HttpGet httpGet = new HttpGet("http://" + IpAdd	+ ":4001/api/user?id=" + StaticData.Id + "&url=" + encryptEncode);
+		String text = null;
+		try {
+			HttpResponse response = httpClient.execute(httpGet);
+			HttpEntity entity = response.getEntity();
+			if (entity != null) {
+				text = getASCIIContentFromEntity(entity);
+			}
+		} catch (Exception e) {
+			text = e.getMessage();
+		}
+		return text;
+	}
+
+	protected void onPostExecute(String results) {
+		if (results != null) {
+			JSONObject json;
+			try {
+				json = new JSONObject(results);
+				user.ParseFromJson(json);
+				MedicsClientes.SetVisibleMain(user.Nombres);
+			} catch (JSONException e) {
+				doctorName.setText(results);
+			}
+		}
+	}
+}

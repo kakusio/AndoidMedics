@@ -1,0 +1,5 @@
+package com.example.nfcandroid.Activities;
+
+public class ToastClass {
+
+}

@@ -20,7 +20,7 @@ public class Persona {
 	public String Username;
 	public String Password;
 	
-	public void ParseFromJson(JSONObject json){
+	public Persona(JSONObject json) {
 		try {
 			idPersona = json.get("idPersona").toString();
 			Nombres = json.get("Nombres").toString();
@@ -38,5 +38,8 @@ public class Persona {
 			Password = json.get("Password").toString();
 		} catch (JSONException e) {
 		}
+	}
+
+	public Persona() {
 	}
 }

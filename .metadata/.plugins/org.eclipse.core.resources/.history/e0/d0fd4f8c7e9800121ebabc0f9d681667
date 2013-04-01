@@ -1,0 +1,28 @@
+package com.example.nfcandroid.Activities;
+
+import com.example.nfcandroid.R;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
+public class AddPariente extends Activity {
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.add_pariente);
+		
+		setContentView(R.layout.add_pariente);
+
+		data.textStatusAddPariente = (TextView) findViewById(R.id.textStatusAddPariente);				
+//		final Button salirAddPariente = (Button) findViewById(R.id.salirAddPariente);
+//		salirAddPariente.setOnClickListener(new View.OnClickListener() {
+//			public void onClick(View v) {
+//				VisibleMain();
+//			}
+//		});
+	}
+}

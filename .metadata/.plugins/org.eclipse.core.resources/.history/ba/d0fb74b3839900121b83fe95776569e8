@@ -1,0 +1,19 @@
+package com.example.nfcandroid.Activities;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.widget.TextView;
+
+import com.example.nfcandroid.R;
+
+public class AddPariente extends Activity {
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.add_pariente);
+		
+		TextView textStatusAddPariente = (TextView) findViewById(R.id.textStatusAddPariente);				
+
+	}
+}

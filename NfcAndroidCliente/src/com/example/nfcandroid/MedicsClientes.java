@@ -1,6 +1,8 @@
 package com.example.nfcandroid;
 
-import android.app.Activity;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -14,22 +16,37 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ExpandableListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-public class MedicsClientes extends Activity {
+import com.example.nfcandroid.Activities.AddExamen;
+import com.example.nfcandroid.Activities.AddPariente;
+import com.example.nfcandroid.Activities.EditProfile;
+import com.example.nfcandroid.Activities.RemoveMedic;
+import com.example.nfcandroid.Activities.CustomActivityClass;
+import com.example.nfcandroid.Utility.ShowMesage;
+
+public class MedicsClientes extends CustomActivityClass {
 	private static final String TAG = "stickynotes";
-	public MedicsClientesData data = new MedicsClientesData(true, "10.0.0.10", "c06c7e2f-1805-4257-a0dc-c8e4f175ae71", new Persona());
+	public MedicsClientesData data = new MedicsClientesData(true, StaticData.rfid, new Persona());
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_proyect);
-		data.toastPeticionExitosa =  Toast.makeText(this, "Petición Exitosa", Toast.LENGTH_SHORT);
 		data.status = (TextView) findViewById(R.id.status);
-		data.PacienteName = (TextView) findViewById(R.id.doctorName);
+		data.PacienteName = (TextView) findViewById(R.id.pacienteName);
 
+		
+		data.agregarPariente = (Button) findViewById(R.id.buttonAgregarPariente);
+		data.agregarExamen = (Button) findViewById(R.id.buttonAgregarExamen);
+		data.editarPerfil = (Button) findViewById(R.id.buttonEditarPerfil);
+		data.desligarMedico = (Button) findViewById(R.id.buttonDeligarMedico);
+		
+		data.agregarPariente.setVisibility(View.INVISIBLE);
+		data.agregarExamen.setVisibility(View.INVISIBLE);
+		data.editarPerfil.setVisibility(View.INVISIBLE);
+		data.desligarMedico.setVisibility(View.INVISIBLE);	
+		
 		InicializarBotonesPrincipales();
 
 		data.mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
@@ -43,9 +60,9 @@ public class MedicsClientes extends Activity {
 		data.mNdefExchangeFilters = new IntentFilter[] { ndefDetected };
 		
 		//TODO: comentar
-		new ShowMesage(this,data.IpAdd,data.user.idPersona, data.user.idPersona, data.user)
-		.Loging( data.status,data.PacienteName, data.agregarPariente, data.agregarExamen, data.editarPerfil, data.desligarMedico );
-		data.user.idPersona = data.user.idPersona;
+//		new ShowMesage(this,data.user.idPersona, data.user.idPersona)
+//		.Loging( data.status);
+//		data.user.idPersona = data.user.idPersona;
 	}
 	
 	
@@ -86,14 +103,11 @@ public class MedicsClientes extends Activity {
 	}
 
 	private void promptForContent(final NdefMessage msg) {
-		data.user.idPersona = new String(msg.getRecords()[0].getPayload());
-		if (data.user.idPersona != "" && !data.user.idPersona.equals(data.user.idPersona)){
-			new ShowMesage(this,data.IpAdd,data.user.idPersona, data.user.idPersona, data.user)
-				.AddPariente(data.toastPeticionExitosa);
-		} else{			
-			new ShowMesage(this,data.IpAdd,data.user.idPersona, data.user.idPersona, data.user)
-				.Loging( data.status,data.PacienteName, data.agregarPariente, data.agregarExamen, data.editarPerfil, data.desligarMedico );
-			data.user.idPersona = data.user.idPersona;
+		String idPersona = new String(msg.getRecords()[0].getPayload());
+		if (data.user.idPersona == "" ||data.user.idPersona == null ||data.user.idPersona ==  StaticData.rfid){
+			new ShowMesage(this ,idPersona, idPersona)
+				.Loging( data.status);
+			data.user.idPersona = idPersona;
 		}
 	}
 
@@ -137,127 +151,61 @@ public class MedicsClientes extends Activity {
 
 	public void InicializarBotonesPrincipales() {
 		((TextView) findViewById(R.id.status)).setText(data.status.getText());
-		((TextView) findViewById(R.id.doctorName)).setText(data.PacienteName.getText());
-
-		InicializarAgregarPariente();
-		InicializarAgregarExamen();
-		InicializarEditarPerfil();
-		InicializarDesligarMedico();
-	}
-	
-	public void InicializarAgregarExamen() {
-		data.agregarExamen = (Button) findViewById(R.id.buttonAgregarExamen);
-		data.agregarExamen.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				setContentView(R.layout.add_examen);
-	
-				final Button salirAddExamen = (Button) findViewById(R.id.salirAddExamen);
-				salirAddExamen.setOnClickListener(new View.OnClickListener() {
-					public void onClick(View v) {
-						VisibleMain();
-					}
-				});
-				
-				final Button buttonEnviarMedidas = (Button) findViewById(R.id.buttonEnviarMedidas);
-				buttonEnviarMedidas.setOnClickListener(new View.OnClickListener() {
-					public void onClick(View v) {
-						TextView editTipoMedida = (TextView) findViewById(R.id.editTipoMedida);
-						TextView editValorMedido = (TextView) findViewById(R.id.editValorMedido);
-						String URL = "/api/examenes" 
-								+ "?IdPersona=" + data.user.idPersona 
-								+ "&idAnalisis=" + editTipoMedida.getText().toString() 
-								+ "&ValorMedido=" + editValorMedido.getText().toString();
-						new PostToUrl(URL, data.IpAdd, data.toastPeticionExitosa).execute();
-					}
-				});
-			}
-		});		
-	}
-
-	public void InicializarAgregarPariente() {
-		data.agregarPariente = (Button) findViewById(R.id.buttonAgregarPariente);
+		((TextView) findViewById(R.id.pacienteName)).setText(data.PacienteName.getText());
+		
 		data.agregarPariente.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				setContentView(R.layout.add_pariente);
-
-				data.textStatusAddPariente = (TextView) findViewById(R.id.textStatusAddPariente);				
-				final Button salirAddPariente = (Button) findViewById(R.id.salirAddPariente);
-				salirAddPariente.setOnClickListener(new View.OnClickListener() {
-					public void onClick(View v) {
-						VisibleMain();
-					}
-				});
+				Intent intent = new Intent(getApplicationContext(), AddPariente.class);
+				intent.putExtra("idPersona", data.user.idPersona);
+				startActivity(intent);
 			}
 		});
-	}
-	
-	public void InicializarEditarPerfil() {
-		data.editarPerfil = (Button) findViewById(R.id.buttonEditarPerfil);
+		data.agregarExamen.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				Intent intent = new Intent(getApplicationContext(), AddExamen.class);
+				intent.putExtra("idPersona", data.user.idPersona);
+				intent.putExtra("Username", data.user.Username);
+				intent.putExtra("Password", data.user.Password);
+				startActivity(intent);
+			}
+		});		
 		data.editarPerfil.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				setContentView(R.layout.edit_profile);
-				final TextView editEmailAddress = (TextView) findViewById(R.id.editEmailAddress);
-				final TextView editTelefonoCasa = (TextView) findViewById(R.id.editTelefonoCasa);
-				final TextView editTelefonoCelular = (TextView) findViewById(R.id.editTelefonoCelular);
-				final TextView editDireccion = (TextView) findViewById(R.id.editDireccion);
-				
-				editEmailAddress.setText(data.user.Email);
-				editTelefonoCasa.setText(data.user.TelefonoResidencial);
-				editTelefonoCelular.setText(data.user.TelefonoCelular);
-				editDireccion.setText(data.user.Direccion);
-				
-				final Button salirEditProfile = (Button) findViewById(R.id.salirEditProfile);
-				salirEditProfile.setOnClickListener(new View.OnClickListener() {
-					public void onClick(View v) {
-						VisibleMain();
-					}
-				});
-				final Button buttonEnviarProfile = (Button) findViewById(R.id.buttonEnviarProfile);
-				buttonEnviarProfile.setOnClickListener(new View.OnClickListener() {
-					public void onClick(View v) {
-						data.user.Email = editEmailAddress.getText().toString();
-						data.user.TelefonoResidencial = editTelefonoCasa.getText().toString();
-						data.user.TelefonoCelular = editTelefonoCelular.getText().toString();
-						data.user.Direccion = editDireccion.getText().toString();
-						
-						String URL = "/api/personas/" + data.user.idPersona
-							+  "?Email=" + data.user.Email 
-							+ "&TelefonoResidencial=" + data.user.TelefonoResidencial
-							+ "&TelefonoCelular=" + data.user.TelefonoCelular
-							+ "&Direccion=" + data.user.Direccion;
-							
-						new PutToUrl(URL, data.IpAdd, data.toastPeticionExitosa).execute();
-					}
-				});
-				
+				Intent intent = new Intent(getApplicationContext(), EditProfile.class);
+				intent.putExtra("Email", data.user.Email);
+				intent.putExtra("TelefonoResidencial", data.user.TelefonoResidencial);
+				intent.putExtra("TelefonoCelular", data.user.TelefonoCelular);
+				intent.putExtra("Direccion", data.user.Direccion);
+				intent.putExtra("idPersona", data.user.idPersona);
+				startActivity(intent);
 			}
 		});
-	}
-	
-	public void InicializarDesligarMedico() {
-		data.desligarMedico = (Button) findViewById(R.id.buttonDeligarMedico);
 		data.desligarMedico.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				setContentView(R.layout.remove_medic);
-
-				final ExpandableListView expandableListViewMedicos = (ExpandableListView) findViewById(R.id.expandableListViewMedicos);
-				final Button salirRemoveMedic = (Button) findViewById(R.id.salirRemoveMedic);
-				salirRemoveMedic.setOnClickListener(new View.OnClickListener() {
-					public void onClick(View v) {
-						VisibleMain();
-					}
-				});
+				Intent intent = new Intent(getApplicationContext(), RemoveMedic.class);
+				intent.putExtra("idPersona", data.user.idPersona);
+				intent.putExtra("Username", data.user.Username);
+				intent.putExtra("Password", data.user.Password);
+				startActivity(intent);
 			}
 		});
 	}
 	
-	public void VisibleMain() {
-		setContentView(R.layout.activity_proyect);
-		InicializarBotonesPrincipales();
-		data.agregarPariente.setVisibility(View.VISIBLE);
-		data.agregarExamen.setVisibility(View.VISIBLE);
-		data.editarPerfil.setVisibility(View.VISIBLE);
-		data.desligarMedico.setVisibility(View.VISIBLE);
-		
+	@Override
+	public void SetVisibleMain(String results) {	
+			if (results != null) {
+				JSONObject json;
+				try {
+					json = new JSONObject(results);
+					data.user = new Persona(json);
+					data.agregarPariente.setVisibility(View.VISIBLE);
+					data.agregarExamen.setVisibility(View.VISIBLE);
+					data.editarPerfil.setVisibility(View.VISIBLE);
+					data.desligarMedico.setVisibility(View.VISIBLE);
+					data.PacienteName.setText("Bienvenido " + data.user.Nombres);
+				} catch (JSONException e) {
+					data.PacienteName.setText(results);
+				}
+			}
 	}
 }

@@ -1,0 +1,29 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/medicslogo"
+    android:gravity="start" >
+
+    <TextView
+        android:id="@+id/textAddPariente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="Agregar Pariente" 
+        android:textColor="#ffffff" />
+    <TextView
+        android:id="@+id/textStatusAddPariente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/textAddPariente"
+        android:layout_marginTop="105dp"
+        android:textColor="#ffffff"
+        android:text="Acerque el NFC del pariente, para agregarlo."
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+     
+</RelativeLayout>

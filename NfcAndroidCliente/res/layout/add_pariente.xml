@@ -5,25 +5,15 @@
     android:background="@drawable/medicslogo"
     android:gravity="start" >
 
-     <Button
-        android:id="@+id/salirAddPariente"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="141dp"
-        android:text="Regresar" />
-
     <TextView
         android:id="@+id/textAddPariente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
         android:textColor="#ffffff"
-        android:text="Agregar Pariente" >
-    </TextView>
+        android:text="Agregar Pariente." />
+    
     <TextView
         android:id="@+id/textStatusAddPariente"
         android:layout_width="wrap_content"

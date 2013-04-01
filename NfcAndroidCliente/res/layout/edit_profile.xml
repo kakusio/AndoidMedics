@@ -5,15 +5,6 @@
     android:background="@drawable/medicslogo"
     android:gravity="start" >
 
-    <Button
-        android:id="@+id/salirEditProfile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="141dp"
-        android:text="Regresar" />
-
     <TextView
         android:id="@+id/textEditProfile"
         android:layout_width="wrap_content"
@@ -25,98 +16,23 @@
         android:textColor="#ffffff" >
     </TextView>
 
+    <ListView
+        android:id="@+id/editListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textEditProfile"
+        android:layout_above="@+id/buttonEnviarProfile"
+        android:layout_centerHorizontal="true" >
+
+    </ListView>
+
     <Button
         android:id="@+id/buttonEnviarProfile"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/salirEditProfile"
-        android:layout_toLeftOf="@+id/salirEditProfile"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:text="Enviar" />
-
-    <EditText
-        android:id="@+id/editDireccion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/salirEditProfile"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="52dp"
-        android:layout_toRightOf="@+id/textDireccion"
-        android:background="#ffffff"
-        android:ems="10" />
-
-    <TextView
-        android:id="@+id/textDireccion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignTop="@+id/editDireccion"
-        android:text="Direccion:   "
-        android:textColor="#ffffff" />
-
-    <EditText
-        android:id="@+id/editTelefonoCelular"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/editDireccion"
-        android:layout_alignLeft="@+id/editDireccion"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="24dp"
-        android:background="#ffffff"
-        android:ems="10"
-        android:inputType="phone" />
-
-    <EditText
-        android:id="@+id/editTelefonoCasa"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/editTelefonoCelular"
-        android:layout_alignLeft="@+id/editTelefonoCelular"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="18dp"
-        android:background="#ffffff"
-        android:ems="10"
-        android:inputType="phone" />
-
-    <TextView
-        android:id="@+id/textTelefonoCasa"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignTop="@+id/editTelefonoCasa"
-        android:text="Telefono: "
-        android:textColor="#ffffff" />
-
-    <TextView
-        android:id="@+id/textEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/textTelefonoCasa"
-        android:layout_alignParentLeft="true"
-        android:layout_alignRight="@+id/textTelefonoCasa"
-        android:layout_marginBottom="22dp"
-        android:text="Email: "
-        android:textColor="#ffffff" />
-
-    <EditText
-        android:id="@+id/editEmailAddress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textEmail"
-        android:layout_alignLeft="@+id/editTelefonoCasa"
-        android:layout_alignParentRight="true"
-        android:background="#ffffff"
-        android:ems="10"
-        android:inputType="textEmailAddress" />
-
-    <TextView
-        android:id="@+id/textTelefonoCelular"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/editTelefonoCasa"
-        android:layout_toLeftOf="@+id/editTelefonoCelular"
-        android:text="Celular:"
-        android:textColor="#ffffff" />
 
 </RelativeLayout>

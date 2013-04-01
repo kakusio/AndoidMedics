@@ -1,0 +1,23 @@
+1364568043608	Rename resource 'speaker_row.xml'
+1364573146973	Rename field 'doctorName'
+1364578399441	Encapsulate field 'Value'
+1364578426934	Encapsulate field 'Name'
+1364578457575	Encapsulate field 'Id'
+1364584213749	Copy file
+1364584475090	Rename field 'editable_information'
+1364585362092	Rename type 'AsyncWebAPIAgenda'
+1364586886589	Rename resource 'resource_details.xml'
+1364587034823	Rename type 'ResourcesDetailsActivity'
+1364587138580	Delete element
+1364587257504	Rename field 'linkurl'
+1364587269304	Rename local variable 'linkurl'
+1364587741124	Rename field 'personas'
+1364587948530	Rename method 'setPersonas'
+1364588007889	Rename type 'AsyncWebAPIPersona'
+1364588203810	Rename type 'GetFromUrl'
+1364588218357	Rename type 'GetFromUrlLoging'
+1364588278009	Rename type 'PutToUrl'
+1364588324477	Rename type 'PostToUrl'
+1364588353708	Rename type 'AddExamenPostToUrl'
+1364588432338	Copy compilation unit
+1364682858188	Rename type 'ToastClass'

@@ -17,7 +17,7 @@
         tools:context=".MainActivity" />
 
     <TextView
-        android:id="@+id/doctorName"
+        android:id="@+id/pacienteName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -31,38 +31,38 @@
         android:id="@+id/buttonAgregarPariente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/doctorName"
-        android:layout_centerHorizontal="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/pacienteName"
         android:layout_marginTop="88dp"
-        android:text="Agregar Pariente"
-        android:visibility="invisible" />
+        android:text="Agregar Pariente" />
 
     <Button
         android:id="@+id/buttonAgregarExamen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/doctorName"
-        android:layout_centerHorizontal="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/pacienteName"
         android:layout_marginTop="41dp"
-        android:text="Agregar Examen"
-        android:visibility="invisible" />
+        android:text="Agregar Examen" />
 
     <Button
         android:id="@+id/buttonEditarPerfil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
         android:layout_below="@+id/buttonAgregarPariente"
-        android:layout_centerHorizontal="true"
-        android:text="Editar Perfil"
-        android:visibility="invisible" />
+        android:text="Editar Perfil" />
 
     <Button
         android:id="@+id/buttonDeligarMedico"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
         android:layout_below="@+id/buttonEditarPerfil"
-        android:layout_centerHorizontal="true"
-        android:text="Deligar Medico"
-        android:visibility="invisible" />
+        android:text="Deligar Medico" />
 
 </RelativeLayout>

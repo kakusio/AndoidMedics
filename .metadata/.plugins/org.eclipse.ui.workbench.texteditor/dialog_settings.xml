@@ -13,17 +13,21 @@
 		<item value="false" key="isRegEx"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="idAnalisis" key="selection"/>
+		<item value="agregarPariente" key="selection"/>
 		<list key="findhistory">
-			<item value="IdAnalisis"/>
-			<item value="IdAn"/>
-			<item value="LogginUser"/>
-			<item value="URL"/>
-			<item value="status"/>
-			<item value="doctorName"/>
-			<item value="long"/>
+			<item value="agregarPariente"/>
+			<item value="setValue"/>
+			<item value="getNdefMessages"/>
+			<item value="VisibleMain"/>
+			<item value="stati"/>
+			<item value="stat"/>
+			<item value="PutToUrl"/>
+			<item value="Editar P"/>
 		</list>
 		<list key="replacehistory">
+			<item value="data.user.idPersona"/>
+			<item value="user.idPersona"/>
+			<item value=";"/>
 			<item value="idAnalisis"/>
 		</list>
 	</section>

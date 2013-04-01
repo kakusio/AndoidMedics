@@ -1,0 +1,7 @@
+package com.example.nfcandroid;
+
+public class StaticData {
+	public static String Password = "4a3398053e566dc6d29935aad970c55ecb568ddef455a617335ee6123fce7c04";
+	public static String Id = "alex";
+	public static String IpAdd = "192.168.0.101";
+}

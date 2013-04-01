@@ -1,0 +1,20 @@
+package com.example.nfcandroid;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+public class Analisis {
+	public String Descripcion;
+	public String idAnalisis;
+	
+	public Analisis(JSONObject json) {
+		try {
+			Descripcion = json.get("Descripcion").toString();
+			idAnalisis = json.get("idAnalisis").toString();
+		} catch (JSONException e) {
+		}
+	}
+
+	public Analisis() {
+	}
+}

@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/medicslogo" 
+    android:background="@drawable/medicslogo"
     android:gravity="start" >
 
     <TextView
@@ -16,36 +16,45 @@
         android:textColor="#ffffff"
         tools:context=".MainActivity" />
 
-    <EditText
-        android:id="@+id/IpText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/status"
-        android:layout_marginTop="23dp"
-        android:ems="10"
-        android:inputType="number|numberSigned|numberDecimal|phone"
-        android:text="Inserte su IP"
-        android:textColor="#ffffff" />
-
     <TextView
-        android:id="@+id/doctorName"
+        android:id="@+id/pacienteName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/IpText"
         android:layout_marginTop="40dp"
         android:text="Bienvenido"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#ffffff" />
 
     <Button
-        android:id="@+id/buttonAgregarPariente"
+        android:id="@+id/buttonPacientesMedico"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/pacienteName"
+        android:layout_marginTop="50dp"
+        android:text="Mis Pacientes" />
+    
+    <Button
+        android:id="@+id/buttonAgregarPaciente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/buttonPacientesMedico"
         android:text="Agregar Paciente" />
+
+    <Button
+        android:id="@+id/buttonEditarPerfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/buttonAgregarPaciente"
+        android:text="Editar Perfil" />
+
+
 
 </RelativeLayout>

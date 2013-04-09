@@ -1,19 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="com.example.nfcandroid.R.layout"/>
-<fullyQualifiedTypeName name="org.apache.http.client.methods.HttpGet"/>
-<fullyQualifiedTypeName name="org.apache.http.client.methods.HttpPost"/>
-<fullyQualifiedTypeName name="android.R.bool"/>
-<fullyQualifiedTypeName name="android.view.View"/>
-<fullyQualifiedTypeName name="android.R"/>
-<fullyQualifiedTypeName name="android.R.id"/>
-<fullyQualifiedTypeName name="com.example.nfcandroid.Proyect"/>
-<fullyQualifiedTypeName name="android.widget.TextView"/>
-<fullyQualifiedTypeName name="com.example.nfcandroid.PostToUrl"/>
-<fullyQualifiedTypeName name="android.widget.ExpandableListView"/>
-<fullyQualifiedTypeName name="java.net.HttpURLConnection"/>
-<fullyQualifiedTypeName name="java.net.URI"/>
-<fullyQualifiedTypeName name="java.io.OutputStreamWriter"/>
 <fullyQualifiedTypeName name="java.net.URL"/>
 <fullyQualifiedTypeName name="java.io.Console"/>
 <fullyQualifiedTypeName name="android.webkit.ConsoleMessage"/>
@@ -23,7 +9,6 @@
 <fullyQualifiedTypeName name="java.lang.Thread"/>
 <fullyQualifiedTypeName name="android.os.Handler"/>
 <fullyQualifiedTypeName name="android.R.string"/>
-<fullyQualifiedTypeName name="org.json.JSONObject"/>
 <fullyQualifiedTypeName name="android.widget.Toast"/>
 <fullyQualifiedTypeName name="org.apache.http.client.methods.HttpPut"/>
 <fullyQualifiedTypeName name="com.example.nfcandroid.PutToUrl"/>
@@ -32,20 +17,15 @@
 <fullyQualifiedTypeName name="com.example.nfcandroid.Utility.PutToUrl"/>
 <fullyQualifiedTypeName name="com.example.nfcandroid.Activities.EditProfile"/>
 <fullyQualifiedTypeName name="com.example.nfcandroid.Activities.AddPariente"/>
-<fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="com.example.nfcandroid.EditableInformationPersona"/>
 <fullyQualifiedTypeName name="android.R.array"/>
 <fullyQualifiedTypeName name="android.widget.Button"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="com.example.nfcandroid.Activities.RemoveMedic"/>
 <fullyQualifiedTypeName name="com.example.nfcandroid.Persona"/>
-<fullyQualifiedTypeName name="org.json.JSONArray"/>
 <fullyQualifiedTypeName name="com.example.nfcandroid.Utility.AsyncWebAPIPersona"/>
-<fullyQualifiedTypeName name="android.widget.ListView"/>
 <fullyQualifiedTypeName name="android.view.View.OnClickListener"/>
 <fullyQualifiedTypeName name="com.example.nfcandroid.Activities.RemoveMedicDetailsActivity"/>
 <fullyQualifiedTypeName name="org.apache.http.client.methods.HttpDelete"/>
-<fullyQualifiedTypeName name="java.lang.String"/>
 <fullyQualifiedTypeName name="com.example.nfcandroid.MedicsClientes"/>
 <fullyQualifiedTypeName name="com.example.nfcandroid.Utility.RemoveMedicoDeletetToUrl"/>
 <fullyQualifiedTypeName name="com.example.nfcandroid.Activities.ToastClass"/>
@@ -60,4 +40,24 @@
 <fullyQualifiedTypeName name="com.example.nfcandroid.Activities.AddExamen"/>
 <fullyQualifiedTypeName name="android.content.res.ColorStateList"/>
 <fullyQualifiedTypeName name="android.graphics.Color"/>
+<fullyQualifiedTypeName name="com.example.nfcandroid.Utility.AsyncWebHistorialMedicos"/>
+<fullyQualifiedTypeName name="java.sql.Date"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="org.json.JSONArray"/>
+<fullyQualifiedTypeName name="org.json.JSONObject"/>
+<fullyQualifiedTypeName name="com.example.nfcandroid.Historial"/>
+<fullyQualifiedTypeName name="android.widget.ExpandableListView"/>
+<fullyQualifiedTypeName name="android.app.ExpandableListActivity"/>
+<fullyQualifiedTypeName name="android.widget.ExpandableListAdapter"/>
+<fullyQualifiedTypeName name="android.widget.ListView"/>
+<fullyQualifiedTypeName name="com.example.nfcandroid.R.layout"/>
+<fullyQualifiedTypeName name="android.widget.TextView"/>
+<fullyQualifiedTypeName name="com.example.nfcandroid.R.id"/>
+<fullyQualifiedTypeName name="com.example.nfcandroid.Activities.HistorialMedic.MyCustomAdapter"/>
+<fullyQualifiedTypeName name="java.lang.String"/>
+<fullyQualifiedTypeName name="com.example.nfcandroid.DescripcionViewModel"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="com.example.nfcandroid.DescripcionComentViewModel"/>
+<fullyQualifiedTypeName name="com.example.nfcandroid.Activities.HistorialMedic"/>
+<fullyQualifiedTypeName name="com.example.nfcandroid.Activities.MisPacientesMedic"/>
 </qualifiedTypeNameHistroy>

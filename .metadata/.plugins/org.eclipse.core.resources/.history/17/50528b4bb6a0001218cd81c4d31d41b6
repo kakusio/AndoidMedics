@@ -1,0 +1,66 @@
+package com.example.nfcandroid.Activities;
+
+import java.net.URLEncoder;
+
+import android.app.Activity;
+import android.database.DataSetObserver;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ExpandableListAdapter;
+import android.widget.ExpandableListView;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import com.example.nfcandroid.AlergiaViewModel;
+import com.example.nfcandroid.Historial;
+import com.example.nfcandroid.R;
+import com.example.nfcandroid.StaticData;
+import com.example.nfcandroid.Utility.AsyncWebHistorialMedicos;
+import com.example.nfcandroid.Utility.Secure;
+
+public class HistorialMedic extends Activity {
+	String idPersona;
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.historial_medico);
+		
+		idPersona = getIntent().getExtras().getString("idPersona");
+		String Password = getIntent().getExtras().getString("Password");
+		String Username = getIntent().getExtras().getString("Username");
+		
+		
+		String URL = "/api/personas/GetHistorial?id=" + idPersona;		
+		String encoded = URL.replaceAll("en", "");
+		String encryptEncode = "";
+		try {
+			String encrypt = new Secure().encrypt(encoded, Password);
+			encryptEncode = URLEncoder.encode(encrypt.toString(), "utf-8");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		String historial_url = "http://" + StaticData.IpAdd	+ ":4001/api/user?id=" + Username + "&url=" + encryptEncode;		
+		new AsyncWebHistorialMedicos(HistorialMedic.this).execute(historial_url);
+		
+	}
+	
+
+	public void setHistorial(Historial historial) {		
+		TextView tv = (TextView)this.findViewById(R.id.nombreUsuario);
+		ListView elv = (ListView)this.findViewById(R.id.listView);
+		tv.setText(historial.Nombres + " " + historial.Apellidos);
+		for (int i = 0; i < historial.AntecedentesAlergico.size(); i++) {
+			AlergiaViewModel array_element = historial.AntecedentesAlergico.get(i);
+			View v = getLayoutInflater().inflate(R.layout.alergia_view_row, null);	
+			TextView fecha = (TextView) v.findViewById(R.id.fecha);
+			TextView alergia = (TextView) v.findViewById(R.id.alergia);
+			TextView comentarios = (TextView) v.findViewById(R.id.comentarios);
+			fecha.setText("Fecha: " + array_element.Fecha);
+			alergia.setText("Alergia: " + array_element.TipoDeAlergia + ", " + array_element.ElemmentoAlergico);
+			comentarios.setText("Comentarios: " + array_element.Comentarios);
+			elv.addView(v);
+		}
+	}
+}

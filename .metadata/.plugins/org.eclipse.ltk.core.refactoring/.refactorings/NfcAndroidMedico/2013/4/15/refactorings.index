@@ -1,0 +1,26 @@
+1365475310134	Delete element
+1365475337137	Rename resource 'add_pariente.xml'
+1365475346486	Delete element
+1365475347717	Delete element
+1365475348802	Delete element
+1365475374930	Rename type 'MedicsClientes'
+1365475566543	Delete element
+1365475568804	Delete element
+1365475571358	Delete element
+1365475610953	Delete element
+1365475612624	Delete element
+1365475648404	Rename field 'buttonAgregarPariente'
+1365475652791	Rename field 'agregarPariente'
+1365475673109	Rename type 'AddPariente'
+1365475734125	Rename method 'AddPariente'
+1365476072316	Rename field 'buttonHistorialMedico'
+1365476159159	Rename type 'RemoveMedic'
+1365476227130	Rename resource 'remove_medic.xml'
+1365476259047	Rename type 'AsyncWebRemoveMedicos'
+1365476304888	Rename method 'setMedicos'
+1365476370743	Rename local variable 'medicos'
+1365477245060	Rename field 'expandableListViewMedicos'
+1365477399159	Rename resource 'remove_medic_row.xml'
+1365478824315	Rename field 'medics'
+1365478892743	Delete element
+1365478934815	Rename type 'AddExamenOParientePostToUrl'

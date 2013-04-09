@@ -10,12 +10,14 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 
 import com.example.nfcandroid.StaticData;
 import com.example.nfcandroid.Activities.CustomActivityClass;
 
 public class LogingGetFromUrl extends AsyncTask<Void, Void, String> {
+	private ProgressDialog progDialog;
 	String URL;
 	CustomActivityClass activity;
 	
@@ -23,6 +25,12 @@ public class LogingGetFromUrl extends AsyncTask<Void, Void, String> {
 		this.URL = URL;
 		this.activity = proyect;
 	}
+	
+	@Override
+    protected void onPreExecute() {
+        super.onPreExecute(); 
+    	progDialog = ProgressDialog.show(this.activity, "Search", "Searching", true, false);
+    }
 
 	protected String getASCIIContentFromEntity(HttpEntity entity)
 			throws IllegalStateException, IOException {
@@ -63,6 +71,7 @@ public class LogingGetFromUrl extends AsyncTask<Void, Void, String> {
 	}
 
 	protected void onPostExecute(String results) {
+    	progDialog.dismiss();
 		activity.SetVisibleMain(results);
 	}
 }

@@ -10,18 +10,26 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.impl.client.DefaultHttpClient;
 
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 
 import com.example.nfcandroid.StaticData;
 import com.example.nfcandroid.Activities.CustomActivityClass;
 
 public class EditProfilePutToUrl extends AsyncTask<Void, Void, String> {
+	private ProgressDialog progDialog;
 	String URL;
-	CustomActivityClass medics;
+	CustomActivityClass activity;
 	public EditProfilePutToUrl(String URL, final CustomActivityClass medics) {
 		this.URL = URL;
-		this.medics = medics;
+		this.activity = medics;
 	}
+	
+	@Override
+    protected void onPreExecute() {
+        super.onPreExecute(); 
+    	progDialog = ProgressDialog.show(this.activity, "Search", "Searching", true, false);
+    }
 
 	protected String getASCIIContentFromEntity(HttpEntity entity)
 			throws IllegalStateException, IOException {
@@ -62,11 +70,12 @@ public class EditProfilePutToUrl extends AsyncTask<Void, Void, String> {
 	}
 
 	protected void onPostExecute(String results) {
+    	progDialog.dismiss();
 		if (results.contains("correctamente")) {
-			medics.ToastPeticionExitosa();
+			activity.ToastPeticionExitosa();
 		}
 		else {
-			medics.ToastPeticionFallo(results);
+			activity.ToastPeticionFallo(results);
 		}
 	}
 }

@@ -1,0 +1,40 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.nfcandroid"
+    android:versionCode="1"
+    android:versionName="1.0" >
+	
+    <uses-sdk
+        android:minSdkVersion="10"
+        android:targetSdkVersion="15" />
+    <uses-permission android:name="android.permission.NFC"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".MedicsMedico"
+            android:label="@string/title_activity_proyect" 
+		    android:screenOrientation="portrait"
+		    android:configChanges="orientation">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+        </activity>        
+        <activity android:name="com.example.nfcandroid.Activities.EditProfile" />
+        <activity android:name="com.example.nfcandroid.Activities.AddExamen" />
+        <activity android:name="com.example.nfcandroid.Activities.AddPaciente" />
+        <activity android:name="com.example.nfcandroid.Activities.MisPacientesMedic" />   
+        <activity android:name="com.example.nfcandroid.Activities.RemoveMedicDetailsActivity" />     
+        <activity android:name="com.example.nfcandroid.Activities.HistorialMedic" />       
+    </application>
+
+</manifest>

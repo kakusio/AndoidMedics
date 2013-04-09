@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/nombreUsuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/toxicosText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Antecedentes Toxicos"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+    
+    <ListView
+        android:id="@+id/toxicosListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </ListView>
+
+    <TextView
+        android:id="@+id/alergiaText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:text="Antecedentes Alergico"/>
+    
+    <ListView
+        android:id="@+id/alergicoListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </ListView>
+
+    <TextView
+        android:id="@+id/procedimientosText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" 
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:text="Antecedentes Procedimientos"/>
+    
+    <ListView
+        android:id="@+id/procedimientosListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </ListView>
+
+    <TextView
+        android:id="@+id/enfermedadesText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" 
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:text="Antecedentes Enfermedades"/>
+    
+    <ListView
+        android:id="@+id/enfermedadesListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </ListView>
+
+    <TextView
+        android:id="@+id/hereditariasText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" 
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:text="Enfermedades Hereditarias"/>
+    
+    <ListView
+        android:id="@+id/hereditariasListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </ListView>
+
+</LinearLayout>

@@ -33,7 +33,8 @@
         <activity android:name="com.example.nfcandroid.Activities.AddExamen" />
         <activity android:name="com.example.nfcandroid.Activities.AddPariente" />
         <activity android:name="com.example.nfcandroid.Activities.RemoveMedic" />   
-        <activity android:name="com.example.nfcandroid.Activities.RemoveMedicDetailsActivity" />       
+        <activity android:name="com.example.nfcandroid.Activities.RemoveMedicDetailsActivity" />     
+        <activity android:name="com.example.nfcandroid.Activities.HistorialMedic" />       
     </application>
 
 </manifest>

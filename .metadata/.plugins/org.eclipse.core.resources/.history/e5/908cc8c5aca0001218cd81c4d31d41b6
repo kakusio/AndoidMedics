@@ -1,0 +1,96 @@
+package com.example.nfcandroid.Activities;
+
+import java.net.URLEncoder;
+import java.util.ArrayList;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import com.example.nfcandroid.Persona;
+import com.example.nfcandroid.R;
+import com.example.nfcandroid.StaticData;
+import com.example.nfcandroid.Utility.AsyncWebRemoveMedicos;
+import com.example.nfcandroid.Utility.Secure;
+
+public class HistorialMedic extends Activity {
+	private ArrayList<Persona> medicos;
+	String idPersona;
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.remove_medic);
+		
+		idPersona = getIntent().getExtras().getString("idPersona");
+		String Password = getIntent().getExtras().getString("Password");
+		String Username = getIntent().getExtras().getString("Username");
+		
+		
+		String URL = "/api/personas/GetMedicos?id=" + idPersona;		
+		String encoded = URL.replaceAll("en", "");
+		String encryptEncode = "";
+		try {
+			String encrypt = new Secure().encrypt(encoded, Password);
+			encryptEncode = URLEncoder.encode(encrypt.toString(), "utf-8");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		String agenda_url = "http://" + StaticData.IpAdd	+ ":4001/api/user?id=" + Username + "&url=" + encryptEncode;
+		
+		
+		
+		
+		new AsyncWebRemoveMedicos(HistorialMedic.this).execute(agenda_url);
+		
+	}
+	
+	public class MyCustomAdapter extends ArrayAdapter<String> {
+		String[] arr;
+		public MyCustomAdapter(Context context, int textViewResourceId,	String[] arr) {
+			super(context, textViewResourceId, arr);
+			this.arr =arr;
+		}
+		@Override
+		public View getView(final int position, View convertView, final ViewGroup parent) {			
+			View row = convertView;
+	        if(row==null){
+				LayoutInflater inflater=getLayoutInflater();
+				row=inflater.inflate(R.layout.remove_medic_row, parent, false);	
+			}
+	        String name = medicos.get(position).Nombres;	        
+	        TextView text=(TextView)row.findViewById(R.id.text);			
+			text.setText(name);
+			text.setOnClickListener(new OnClickListener() {				
+				public void onClick(View v) {
+					Intent intent = new Intent(getApplicationContext(), RemoveMedicDetailsActivity.class);
+					intent.putExtra("Nombres", medicos.get(position).Nombres);
+					intent.putExtra("Apellidos", medicos.get(position).Apellidos);
+					intent.putExtra("id", idPersona);
+					intent.putExtra("idMedico", medicos.get(position).idPersona);
+					startActivity(intent);
+				}
+			});
+			return row;	
+		}	
+	}
+
+	public void setHistorial(ArrayList<Persona> medicos) {
+		this.medicos = medicos;
+		String[] arr = new String[medicos.size()];
+		for (int i = 0; i < medicos.size(); i++) {
+			arr[i] = medicos.get(i).Nombres;  
+		}
+		
+		MyCustomAdapter listAdaper = new MyCustomAdapter(HistorialMedic.this, R.layout.remove_medic_row, arr);
+		ListView expandableListViewMedicos = (ListView) findViewById(R.id.expandableListViewMedicos);
+		expandableListViewMedicos.setAdapter(listAdaper);
+	}
+}

@@ -13,7 +13,6 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:text="Acerque el RFID al celular"
-        android:textColor="#ffffff"
         tools:context=".MainActivity" />
 
     <TextView
@@ -24,8 +23,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginTop="40dp"
         android:text="Bienvenido"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#ffffff" />
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <Button
         android:id="@+id/buttonAgregarPariente"

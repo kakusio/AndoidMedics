@@ -21,3 +21,16 @@
 1365479044357	Rename field 'medics'
 1365479052176	Rename field 'medics'
 1365479061047	Rename field 'medics'
+1365645585799	Rename local variable 'idx1'
+1365645592792	Rename local variable 'idx2'
+1365645606808	Rename local variable 's'
+1365645617321	Rename local variable 'l'
+1365647029342	Copy file
+1365647057126	Copy files
+1365647076421	Copy file
+1365647164301	Copy compilation unit
+1365874354503	Delete element
+1365874357461	Delete element
+1365874585987	Delete element
+1365876729100	Delete element
+1365876734845	Delete element

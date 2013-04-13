@@ -21,6 +21,7 @@ import com.example.nfcandroid.R;
 import com.example.nfcandroid.StaticData;
 import com.example.nfcandroid.Utility.AsyncWebHistorialMedicos;
 import com.example.nfcandroid.Utility.Secure;
+import com.example.nfcandroid.Utility.SeparatedListAdapter;
 
 public class HistorialMedic extends Activity {
 	String idPersona;
@@ -50,24 +51,26 @@ public class HistorialMedic extends Activity {
 	
 
 	public void setHistorial(Historial historial) {		
-		TextView tv = (TextView)this.findViewById(R.id.nombreUsuario);
-		ListView alergicoListView = (ListView)this.findViewById(R.id.alergicoListView);
-		ListView toxicosListView = (ListView)this.findViewById(R.id.toxicosListView);
-		ListView hereditariasListView = (ListView)this.findViewById(R.id.hereditariasListView);
-		ListView procedimientosListView = (ListView)this.findViewById(R.id.procedimientosListView);
-		ListView enfermedadesListView = (ListView)this.findViewById(R.id.enfermedadesListView);
-		tv.setText(historial.Nombres + " " + historial.Apellidos);
-		
+        SeparatedListAdapter adapter = new SeparatedListAdapter(this);
+
 		AlergiaAdapter alergiaAdapter = new AlergiaAdapter(this, R.layout.alergia_view_row, historial.AntecedentesAlergico);
-		alergicoListView.setAdapter(alergiaAdapter);
 		DescriptionAdapter toxicosAdapter = new DescriptionAdapter(this, R.layout.description_view_row, historial.AntecedentesToxicos);
-		toxicosListView.setAdapter(toxicosAdapter);
 		DescriptionAdapter hereditariasAdapter = new DescriptionAdapter(this, R.layout.description_view_row, historial.EnfermedadesHereditarias);
-		hereditariasListView.setAdapter(hereditariasAdapter);
 		DescriptionComentarioAdapter procedimientosAdapter = new DescriptionComentarioAdapter(this, R.layout.description_coment_view_row, historial.AntecedentesProcedimientos);
-		procedimientosListView.setAdapter(procedimientosAdapter);
 		DescriptionComentarioAdapter enfermedadesAdapter = new DescriptionComentarioAdapter(this, R.layout.description_coment_view_row, historial.AntecedentesEnfermedades);
-		enfermedadesListView.setAdapter(enfermedadesAdapter);
+
+        adapter.addSection("Antecedentes Toxicos", toxicosAdapter);
+        adapter.addSection("Antecedentes Alergico", alergiaAdapter);
+        adapter.addSection("Antecedentes Procedimientos", procedimientosAdapter);
+        adapter.addSection("Antecedentes Enfermedades", enfermedadesAdapter);
+        adapter.addSection("Enfermedades Hereditarias", hereditariasAdapter);
+        
+        ListView listView = (ListView) findViewById(R.id.listView);
+		listView.setAdapter(adapter);
+		
+		
+		TextView tv = (TextView)this.findViewById(R.id.nombreUsuario);
+		tv.setText(historial.Nombres + " " + historial.Apellidos);
 	}
 	
 	public class AlergiaAdapter extends ArrayAdapter<String> {
@@ -87,7 +90,7 @@ public class HistorialMedic extends Activity {
 	        TextView fecha = (TextView) v.findViewById(R.id.fecha);
 			TextView alergia = (TextView) v.findViewById(R.id.alergia);
 			TextView comentarios = (TextView) v.findViewById(R.id.comentarios);
-			fecha.setText("Fecha: " + element.Fecha);
+			fecha.setText("Fecha: " + element.GetShotDate());
 			alergia.setText("Alergia: " + element.TipoDeAlergia + ", " + element.ElemmentoAlergico);
 			comentarios.setText("Comentarios: " + element.Comentarios);
 			return v;	
@@ -131,9 +134,10 @@ public class HistorialMedic extends Activity {
 	        TextView descripcion = (TextView) v.findViewById(R.id.descripcion);
 	        TextView fecha = (TextView) v.findViewById(R.id.fecha);
 	        TextView comentarios = (TextView) v.findViewById(R.id.comentarios);
+	        
 	        descripcion.setText("Descripcion: " + element.Descripcion);
 			fecha.setText("Comentarios: " + element.Comentarios);
-			comentarios.setText("Fecha: " + element.Fecha);
+			comentarios.setText("Fecha: " + element.GetShotDate());
 			return v;	
 		}	
 	}

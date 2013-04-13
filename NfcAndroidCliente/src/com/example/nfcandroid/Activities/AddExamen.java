@@ -62,7 +62,6 @@ public class AddExamen extends CustomActivityClass {
 			radioButton.setText(analisis.get(i).Descripcion);
 			radioButton.setContentDescription(analisis.get(i).idAnalisis);
 			radioButton.setId(200 + i);
-			radioButton.setTextColor(Color.WHITE);
 			radioGroup.addView(radioButton);           
 		  }   
 	}

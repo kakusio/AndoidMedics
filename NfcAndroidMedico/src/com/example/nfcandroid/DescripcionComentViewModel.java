@@ -1,9 +1,13 @@
 package com.example.nfcandroid;
 
-import java.sql.Date;
+import java.util.Date;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import com.example.nfcandroid.Utility.Tools;
+
+import android.text.format.DateFormat;
 
 
 
@@ -14,7 +18,7 @@ public class DescripcionComentViewModel {
 	
 	public DescripcionComentViewModel(JSONObject json) {
 		try {
-			Fecha = new Date(json.getLong("Fecha"));
+			Fecha =  Tools.JsonDateToDate(json.getString("Fecha"));
 			Descripcion = json.getString("Descripcion");
 			Comentarios = json.getString("Comentarios");
 		} catch (JSONException e) {
@@ -22,5 +26,9 @@ public class DescripcionComentViewModel {
 	}
 
 	public DescripcionComentViewModel() {
+	}
+	public CharSequence GetShotDate() {
+		if (Fecha != null)	return DateFormat.format("dd-MMMM-yyyy", Fecha); 
+		return "";
 	}
 }

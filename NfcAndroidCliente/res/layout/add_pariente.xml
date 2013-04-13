@@ -11,7 +11,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:textColor="#ffffff"
         android:text="Agregar Pariente." />
     
     <TextView
@@ -22,7 +21,6 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/textAddPariente"
         android:layout_marginTop="105dp"
-        android:textColor="#ffffff"
         android:text="Acerque el NFC del pariente, para agregarlo."
         android:textAppearance="?android:attr/textAppearanceLarge" />
      

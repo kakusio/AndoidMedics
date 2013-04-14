@@ -6,6 +6,5 @@
 	android:layout_height="wrap_content"
 	android:paddingTop="2dip"
 	android:paddingBottom="2dip"
-	android:paddingLeft="5dip"
-	style="?android:attr/listSeparatorTextViewStyle" />
+	android:paddingLeft="20dip"/>
 

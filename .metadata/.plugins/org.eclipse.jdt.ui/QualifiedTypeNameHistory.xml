@@ -25,7 +25,6 @@
 <fullyQualifiedTypeName name="com.example.nfcandroid.Utility.RemoveMedicoDeletetToUrl"/>
 <fullyQualifiedTypeName name="com.example.nfcandroid.Activities.ToastClass"/>
 <fullyQualifiedTypeName name="java.lang.Override"/>
-<fullyQualifiedTypeName name="com.example.nfcandroid.StaticData"/>
 <fullyQualifiedTypeName name="android.widget.EditText"/>
 <fullyQualifiedTypeName name="android.widget.RadioGroup"/>
 <fullyQualifiedTypeName name="android.widget.RadioButton"/>
@@ -60,4 +59,5 @@
 <fullyQualifiedTypeName name="com.example.nfcandroid.Utility.Tools"/>
 <fullyQualifiedTypeName name="android.text.format.DateFormat"/>
 <fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="com.example.nfcandroid.StaticData"/>
 </qualifiedTypeNameHistroy>

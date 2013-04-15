@@ -63,9 +63,9 @@ public class MedicsClientes extends CustomActivityClass {
 		data.mNdefExchangeFilters = new IntentFilter[] { ndefDetected };
 		
 		//TODO: comentar
-		data.user.idPersona = StaticData.rfid;
-		new ShowMesage(this,data.user.idPersona, data.user.idPersona)
-		.Loging( data.status);
+//		data.user.idPersona = StaticData.rfid;
+//		new ShowMesage(this,data.user.idPersona, data.user.idPersona)
+//		.Loging( data.status);
 	}
 	
 	

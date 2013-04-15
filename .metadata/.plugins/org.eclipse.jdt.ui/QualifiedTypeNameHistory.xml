@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="com.example.nfcandroid.ShowMesage"/>
-<fullyQualifiedTypeName name="java.lang.Thread"/>
-<fullyQualifiedTypeName name="android.os.Handler"/>
-<fullyQualifiedTypeName name="android.R.string"/>
 <fullyQualifiedTypeName name="android.widget.Toast"/>
 <fullyQualifiedTypeName name="org.apache.http.client.methods.HttpPut"/>
 <fullyQualifiedTypeName name="com.example.nfcandroid.PutToUrl"/>
@@ -16,9 +12,7 @@
 <fullyQualifiedTypeName name="android.R.array"/>
 <fullyQualifiedTypeName name="android.widget.Button"/>
 <fullyQualifiedTypeName name="com.example.nfcandroid.Activities.RemoveMedic"/>
-<fullyQualifiedTypeName name="com.example.nfcandroid.Persona"/>
 <fullyQualifiedTypeName name="com.example.nfcandroid.Utility.AsyncWebAPIPersona"/>
-<fullyQualifiedTypeName name="android.view.View.OnClickListener"/>
 <fullyQualifiedTypeName name="com.example.nfcandroid.Activities.RemoveMedicDetailsActivity"/>
 <fullyQualifiedTypeName name="org.apache.http.client.methods.HttpDelete"/>
 <fullyQualifiedTypeName name="com.example.nfcandroid.MedicsClientes"/>
@@ -36,7 +30,6 @@
 <fullyQualifiedTypeName name="android.graphics.Color"/>
 <fullyQualifiedTypeName name="com.example.nfcandroid.Utility.AsyncWebHistorialMedicos"/>
 <fullyQualifiedTypeName name="java.sql.Date"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="org.json.JSONArray"/>
 <fullyQualifiedTypeName name="org.json.JSONObject"/>
 <fullyQualifiedTypeName name="com.example.nfcandroid.Historial"/>
@@ -44,13 +37,8 @@
 <fullyQualifiedTypeName name="android.app.ExpandableListActivity"/>
 <fullyQualifiedTypeName name="android.widget.ExpandableListAdapter"/>
 <fullyQualifiedTypeName name="android.widget.ListView"/>
-<fullyQualifiedTypeName name="com.example.nfcandroid.R.layout"/>
-<fullyQualifiedTypeName name="android.widget.TextView"/>
-<fullyQualifiedTypeName name="com.example.nfcandroid.R.id"/>
 <fullyQualifiedTypeName name="com.example.nfcandroid.Activities.HistorialMedic.MyCustomAdapter"/>
-<fullyQualifiedTypeName name="java.lang.String"/>
 <fullyQualifiedTypeName name="com.example.nfcandroid.DescripcionViewModel"/>
-<fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="com.example.nfcandroid.DescripcionComentViewModel"/>
 <fullyQualifiedTypeName name="com.example.nfcandroid.Activities.HistorialMedic"/>
 <fullyQualifiedTypeName name="com.example.nfcandroid.Activities.MisPacientesMedic"/>
@@ -60,4 +48,16 @@
 <fullyQualifiedTypeName name="android.text.format.DateFormat"/>
 <fullyQualifiedTypeName name="java.util.Date"/>
 <fullyQualifiedTypeName name="com.example.nfcandroid.StaticData"/>
+<fullyQualifiedTypeName name="android.widget.TextView"/>
+<fullyQualifiedTypeName name="android.widget.LinearLayout"/>
+<fullyQualifiedTypeName name="android.view.View.OnClickListener"/>
+<fullyQualifiedTypeName name="com.example.nfcandroid.Persona"/>
+<fullyQualifiedTypeName name="android.widget.ArrayAdapter"/>
+<fullyQualifiedTypeName name="com.example.nfcandroid.R.id"/>
+<fullyQualifiedTypeName name="com.example.nfcandroid.R.layout"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.lang.String"/>
+<fullyQualifiedTypeName name="android.app.ActionBar.LayoutParams"/>
+<fullyQualifiedTypeName name="android.view.ViewGroup.LayoutParams"/>
 </qualifiedTypeNameHistroy>

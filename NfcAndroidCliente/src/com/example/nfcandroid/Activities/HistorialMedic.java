@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -28,6 +29,8 @@ import com.example.nfcandroid.Utility.SeparatedListAdapter;
 
 public class HistorialMedic extends Activity {
 	String idPersona;
+	static int line_size= 30;
+	static int header_size = 36;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -78,6 +81,17 @@ public class HistorialMedic extends Activity {
         ListView heredoFamiliaresList = (ListView) findViewById(R.id.heredoFamiliaresList);
         ListView socioEconomicosList = (ListView) findViewById(R.id.socioEconomicosList);
         ListView datosPersonalesList = (ListView) findViewById(R.id.datosPersonalesList);
+        
+        LayoutParams patologicosParams = patologicosList.getLayoutParams();
+        patologicosParams.height = 3*line_size*(historial.Enfermedades.size() + historial.Alergias.size() + historial.Procedimientos.size()) + header_size*3;
+        LayoutParams noPatologicosParams = noPatologicosList.getLayoutParams();
+        noPatologicosParams.height = line_size*historial.Toxicos.size() + header_size;
+        LayoutParams heredoFamiliaresParams = heredoFamiliaresList.getLayoutParams();
+        heredoFamiliaresParams.height = line_size*historial.EnfermedadesHereditarias.size() + header_size;
+        LayoutParams socioEconomicosParams = socioEconomicosList.getLayoutParams();
+        socioEconomicosParams.height = line_size*0;
+        LayoutParams datosPersonalesParams = datosPersonalesList.getLayoutParams();
+        datosPersonalesParams.height = line_size*14;
         
         patologicosList.setAdapter(patologicosAdapter);
         noPatologicosList.setAdapter(noPatologicosAdapter);

@@ -8,40 +8,38 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Historial {
-	public String idPersona;
-	public String Nombres;
-	public String Apellidos;
-	public List<DescripcionViewModel> AntecedentesToxicos = new ArrayList<DescripcionViewModel>();
-	public List<AlergiaViewModel> AntecedentesAlergico = new ArrayList<AlergiaViewModel>();
-	public List<DescripcionComentViewModel> AntecedentesProcedimientos = new ArrayList<DescripcionComentViewModel>();
-	public List<DescripcionComentViewModel> AntecedentesEnfermedades = new ArrayList<DescripcionComentViewModel>();
+	public Persona DatosPersonales;
+	
+	public List<DescripcionViewModel> Toxicos = new ArrayList<DescripcionViewModel>();
+	public List<AlergiaViewModel> Alergias = new ArrayList<AlergiaViewModel>();
+	public List<DescripcionComentViewModel> Procedimientos = new ArrayList<DescripcionComentViewModel>();
+	public List<DescripcionComentViewModel> Enfermedades = new ArrayList<DescripcionComentViewModel>();
 	public List<DescripcionViewModel> EnfermedadesHereditarias = new ArrayList<DescripcionViewModel>();
 	
 	public Historial(JSONObject json) {
 		try {
-			idPersona = json.getString("idPersona");
-			Nombres = json.getString("Nombres");
-			Apellidos = json.getString("Apellidos");
-			JSONArray JA_toxicos = json.getJSONArray("AntecedentesToxicos");
+			DatosPersonales = new Persona(json.getJSONObject("DatosPersonales"));
+			
+			JSONArray JA_toxicos = json.getJSONArray("Toxicos");
 			for(int i=0; i<JA_toxicos.length(); i++) {
 				JSONObject jobj= JA_toxicos.getJSONObject(i);	
-				AntecedentesToxicos.add( new DescripcionViewModel(jobj));
+				Toxicos.add( new DescripcionViewModel(jobj));
 			}		
-			JSONArray JA_alergicos = json.getJSONArray("AntecedentesAlergico");
+			JSONArray JA_alergicos = json.getJSONArray("Alergias");
 			for(int i=0; i<JA_alergicos.length(); i++) {
 				JSONObject jobj= JA_alergicos.getJSONObject(i);	
-				AntecedentesAlergico.add( new AlergiaViewModel(jobj));
+				Alergias.add( new AlergiaViewModel(jobj));
 			}		
-			JSONArray JA_procedimientos = json.getJSONArray("AntecedentesProcedimientos");
+			JSONArray JA_procedimientos = json.getJSONArray("Procedimientos");
 			for(int i=0; i<JA_procedimientos.length(); i++) {
 				JSONObject jobj= JA_procedimientos.getJSONObject(i);	
-				AntecedentesProcedimientos.add( new DescripcionComentViewModel(jobj));
+				Procedimientos.add( new DescripcionComentViewModel(jobj));
 			}		
 
-			JSONArray JA_enfermedades = json.getJSONArray("AntecedentesEnfermedades");
+			JSONArray JA_enfermedades = json.getJSONArray("Enfermedades");
 			for(int i=0; i<JA_enfermedades.length(); i++) {
 				JSONObject jobj= JA_enfermedades.getJSONObject(i);	
-				AntecedentesEnfermedades.add( new DescripcionComentViewModel(jobj));
+				Enfermedades.add( new DescripcionComentViewModel(jobj));
 			}	
 			JSONArray JA_hereditarias = json.getJSONArray("EnfermedadesHereditarias");
 			for(int i=0; i<JA_hereditarias.length(); i++) {

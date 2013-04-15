@@ -8,8 +8,11 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -17,6 +20,7 @@ import com.example.nfcandroid.AlergiaViewModel;
 import com.example.nfcandroid.DescripcionComentViewModel;
 import com.example.nfcandroid.DescripcionViewModel;
 import com.example.nfcandroid.Historial;
+import com.example.nfcandroid.Persona;
 import com.example.nfcandroid.R;
 import com.example.nfcandroid.StaticData;
 import com.example.nfcandroid.Utility.AsyncWebHistorialMedicos;
@@ -25,6 +29,8 @@ import com.example.nfcandroid.Utility.SeparatedListAdapter;
 
 public class HistorialMedic extends Activity {
 	String idPersona;
+	static int line_size= 30;
+	static int header_size = 36;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -46,31 +52,56 @@ public class HistorialMedic extends Activity {
 		}
 		String historial_url = "http://" + StaticData.IpAdd	+ ":4001/api/user?id=" + Username + "&url=" + encryptEncode;		
 		new AsyncWebHistorialMedicos(HistorialMedic.this).execute(historial_url);
+		setAcordeonEvents();
 		
 	}
-	
+
 
 	public void setHistorial(Historial historial) {		
-        SeparatedListAdapter adapter = new SeparatedListAdapter(this);
+        SeparatedListAdapter patologicosAdapter = new SeparatedListAdapter(this);
+        SeparatedListAdapter noPatologicosAdapter = new SeparatedListAdapter(this);
+        SeparatedListAdapter heredoFamiliaresAdapter = new SeparatedListAdapter(this);
+        SeparatedListAdapter socioEconomicosAdapter = new SeparatedListAdapter(this);
 
-		AlergiaAdapter alergiaAdapter = new AlergiaAdapter(this, R.layout.alergia_view_row, historial.AntecedentesAlergico);
-		DescriptionAdapter toxicosAdapter = new DescriptionAdapter(this, R.layout.description_view_row, historial.AntecedentesToxicos);
+		AlergiaAdapter alergiaAdapter = new AlergiaAdapter(this, R.layout.alergia_view_row, historial.Alergias);
+		DescriptionAdapter toxicosAdapter = new DescriptionAdapter(this, R.layout.description_view_row, historial.Toxicos);
 		DescriptionAdapter hereditariasAdapter = new DescriptionAdapter(this, R.layout.description_view_row, historial.EnfermedadesHereditarias);
-		DescriptionComentarioAdapter procedimientosAdapter = new DescriptionComentarioAdapter(this, R.layout.description_coment_view_row, historial.AntecedentesProcedimientos);
-		DescriptionComentarioAdapter enfermedadesAdapter = new DescriptionComentarioAdapter(this, R.layout.description_coment_view_row, historial.AntecedentesEnfermedades);
+		DescriptionComentarioAdapter procedimientosAdapter = new DescriptionComentarioAdapter(this, R.layout.description_coment_view_row, historial.Procedimientos);
+		DescriptionComentarioAdapter enfermedadesAdapter = new DescriptionComentarioAdapter(this, R.layout.description_coment_view_row, historial.Enfermedades);
+        ArrayAdapter<String> datosPersonalesAdapter = new ArrayAdapter<String>(this,R.layout.simple_view_row, getDatosPersonales(historial.DatosPersonales));
 
-        adapter.addSection("Antecedentes Toxicos", toxicosAdapter);
-        adapter.addSection("Antecedentes Alergico", alergiaAdapter);
-        adapter.addSection("Antecedentes Procedimientos", procedimientosAdapter);
-        adapter.addSection("Antecedentes Enfermedades", enfermedadesAdapter);
-        adapter.addSection("Enfermedades Hereditarias", hereditariasAdapter);
+		noPatologicosAdapter.addSection("Toxicos", toxicosAdapter);
+		patologicosAdapter.addSection("Enfermedades", enfermedadesAdapter);
+		patologicosAdapter.addSection("Procedimientos", procedimientosAdapter);
+		patologicosAdapter.addSection("Alergias", alergiaAdapter);
+		heredoFamiliaresAdapter.addSection("Enfermedades Hereditarias", hereditariasAdapter);
         
-        ListView listView = (ListView) findViewById(R.id.listView);
-		listView.setAdapter(adapter);
+        ListView patologicosList = (ListView) findViewById(R.id.patologicosList);
+        ListView noPatologicosList = (ListView) findViewById(R.id.noPatologicosList);
+        ListView heredoFamiliaresList = (ListView) findViewById(R.id.heredoFamiliaresList);
+        ListView socioEconomicosList = (ListView) findViewById(R.id.socioEconomicosList);
+        ListView datosPersonalesList = (ListView) findViewById(R.id.datosPersonalesList);
+        
+        LayoutParams patologicosParams = patologicosList.getLayoutParams();
+        patologicosParams.height = 3*line_size*(historial.Enfermedades.size() + historial.Alergias.size() + historial.Procedimientos.size()) + header_size*3;
+        LayoutParams noPatologicosParams = noPatologicosList.getLayoutParams();
+        noPatologicosParams.height = line_size*historial.Toxicos.size() + header_size;
+        LayoutParams heredoFamiliaresParams = heredoFamiliaresList.getLayoutParams();
+        heredoFamiliaresParams.height = line_size*historial.EnfermedadesHereditarias.size() + header_size;
+        LayoutParams socioEconomicosParams = socioEconomicosList.getLayoutParams();
+        socioEconomicosParams.height = line_size*0;
+        LayoutParams datosPersonalesParams = datosPersonalesList.getLayoutParams();
+        datosPersonalesParams.height = line_size*14;
+        
+        patologicosList.setAdapter(patologicosAdapter);
+        noPatologicosList.setAdapter(noPatologicosAdapter);
+        heredoFamiliaresList.setAdapter(heredoFamiliaresAdapter);
+        socioEconomicosList.setAdapter(socioEconomicosAdapter);
+        datosPersonalesList.setAdapter(datosPersonalesAdapter);
 		
 		
 		TextView tv = (TextView)this.findViewById(R.id.nombreUsuario);
-		tv.setText(historial.Nombres + " " + historial.Apellidos);
+		tv.setText(historial.DatosPersonales.Nombres + " " + historial.DatosPersonales.Apellidos);
 	}
 	
 	public class AlergiaAdapter extends ArrayAdapter<String> {
@@ -131,13 +162,76 @@ public class HistorialMedic extends Activity {
 				v=inflater.inflate(R.layout.description_coment_view_row, parent, false);	
 			}
 	        DescripcionComentViewModel element = antecedentes.get(position);
-	        TextView fecha = (TextView) v.findViewById(R.id.fecha);
 	        TextView descripcion = (TextView) v.findViewById(R.id.descripcion);
+	        TextView fecha = (TextView) v.findViewById(R.id.fecha);
 	        TextView comentarios = (TextView) v.findViewById(R.id.comentarios);
-			comentarios.setText("Fecha: " + element.GetShotDate());
+	        
 	        descripcion.setText("Descripcion: " + element.Descripcion);
 			fecha.setText("Comentarios: " + element.Comentarios);
+			comentarios.setText("Fecha: " + element.GetShotDate());
 			return v;	
 		}	
+	}
+	
+
+	private void setAcordeonEvents() {
+		TextView personales = (TextView) findViewById(R.id.Personales);
+		LinearLayout personalesLayout = (LinearLayout) findViewById(R.id.personaleslayout);
+		setVisibilityEvent(personales, personalesLayout);
+
+		TextView heredoFamiliares = (TextView) findViewById(R.id.heredoFamiliares);
+		LinearLayout heredoFamiliaresLayout = (LinearLayout) findViewById(R.id.heredoFamiliaresLayout);
+		setVisibilityEvent(heredoFamiliares, heredoFamiliaresLayout);
+
+		TextView socioEconomicos = (TextView) findViewById(R.id.socioEconomicos);
+		LinearLayout socioEconomicosLayout = (LinearLayout) findViewById(R.id.socioEconomicosLayout);
+		setVisibilityEvent(socioEconomicos, socioEconomicosLayout);
+
+		TextView patologicos = (TextView) findViewById(R.id.patologicos);
+		LinearLayout patologicosLayout = (LinearLayout) findViewById(R.id.patologicosLayout);
+		setVisibilityEvent(patologicos,  patologicosLayout);
+
+		TextView noPatologicos = (TextView) findViewById(R.id.noPatologicos);
+		LinearLayout noPatologicosLayout = (LinearLayout) findViewById(R.id.noPatologicosLayout);
+		setVisibilityEvent(noPatologicos, noPatologicosLayout);
+
+		TextView datosPerosonalesTest = (TextView) findViewById(R.id.datosPerosonalesTest);
+		LinearLayout datosPerosonalesLayout = (LinearLayout) findViewById(R.id.datosPerosonalesLayout);
+		setVisibilityEvent(datosPerosonalesTest, datosPerosonalesLayout);
+
+		TextView antecedentesTest = (TextView) findViewById(R.id.antecedentesTest);
+		LinearLayout antecedentesLayout = (LinearLayout) findViewById(R.id.antecedentesLayout);
+		setVisibilityEvent(antecedentesTest, antecedentesLayout);
+	}
+	
+	private void setVisibilityEvent(final TextView test, final LinearLayout layout){
+		layout.setVisibility(View.GONE);
+		test.setOnClickListener(new OnClickListener() {
+			
+			public void onClick(View v) {
+				if (layout.getVisibility() == View.VISIBLE) layout.setVisibility(View.GONE);
+				else layout.setVisibility(View.VISIBLE);
+				
+			}
+		});
+	}
+	
+	private String[] getDatosPersonales(Persona datosPersonales){
+		String[] datos = new String[14];
+		datos[0] = "Sexo: " + datosPersonales.Sexo;
+		datos[1] = "Edad: " + datosPersonales.Edad;
+		datos[2] = "Telefono: " + datosPersonales.TelefonoResidencial;
+		datos[3] = "Email: " + datosPersonales.Email;
+		datos[4] = "Cedula: " + datosPersonales.Cedula;
+		datos[5] = "Direccion: " + datosPersonales.Direccion;
+		datos[6] = "Tipo De Sangre: " + datosPersonales.TipoDeSangre;
+		datos[7] = "Religion: " + datosPersonales.Religion;
+		datos[8] = "Ocupacion: " + datosPersonales.Ocupacion;
+		datos[9] = "EstadoCivil: " + datosPersonales.EstadoCivil;
+		datos[10] = "NivelEducacion: " + datosPersonales.NivelEducacion;
+		datos[11] = "Raza: " + datosPersonales.Raza;
+		datos[12] = "Peso: " + datosPersonales.Peso;
+		datos[13] = "Altura: " + datosPersonales.Altura;
+		return datos;
 	}
 }

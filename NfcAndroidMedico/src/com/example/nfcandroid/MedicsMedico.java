@@ -19,9 +19,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.nfcandroid.Activities.AddPaciente;
-import com.example.nfcandroid.Activities.EditProfile;
-import com.example.nfcandroid.Activities.HistorialMedic;
 import com.example.nfcandroid.Activities.CustomActivityClass;
+import com.example.nfcandroid.Activities.EditProfile;
 import com.example.nfcandroid.Activities.MisPacientesMedic;
 import com.example.nfcandroid.Utility.ShowMesage;
 
@@ -58,9 +57,9 @@ public class MedicsMedico extends CustomActivityClass {
 		data.mNdefExchangeFilters = new IntentFilter[] { ndefDetected };
 		
 		//TODO: comentar
-		new ShowMesage(this,data.user.idPersona, data.user.idPersona)
-		.Loging( data.status);
-		data.user.idPersona = data.user.idPersona;
+//		new ShowMesage(this,data.user.idPersona, data.user.idPersona)
+//		.Loging( data.status);
+//		data.user.idPersona = data.user.idPersona;
 	}
 	
 	

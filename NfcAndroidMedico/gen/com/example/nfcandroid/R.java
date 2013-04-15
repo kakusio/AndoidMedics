@@ -16,36 +16,55 @@ public final class R {
         public static final int medicslogo=0x7f020002;
     }
     public static final class id {
+        public static final int Personales=0x7f07001f;
         public static final int alergia=0x7f070008;
+        public static final int antecedentesLayout=0x7f07001e;
+        public static final int antecedentesTest=0x7f07001d;
         public static final int buttonAgregarPaciente=0x7f070003;
         public static final int buttonEditarPerfil=0x7f070004;
         public static final int buttonEnviarProfile=0x7f070018;
         public static final int buttonPacientesMedico=0x7f070002;
         public static final int comentarios=0x7f070009;
+        public static final int datosPerosonalesLayout=0x7f07001b;
+        public static final int datosPerosonalesTest=0x7f07001a;
+        public static final int datosPersonalesList=0x7f07001c;
         public static final int descripcion=0x7f07000a;
         public static final int editCelular=0x7f070014;
         public static final int editDireccion=0x7f070017;
         public static final int editEmail=0x7f07000e;
         public static final int editTelefono=0x7f070011;
         public static final int fecha=0x7f070007;
+        public static final int heredoFamiliares=0x7f070027;
+        public static final int heredoFamiliaresLayout=0x7f070028;
+        public static final int heredoFamiliaresList=0x7f070029;
         public static final int layoutCelular=0x7f070012;
         public static final int layoutDireccion=0x7f070015;
         public static final int layoutEmail=0x7f07000c;
         public static final int layoutTelefono=0x7f07000f;
-        public static final int listView=0x7f07001a;
-        public static final int listViewMedicos=0x7f07001d;
-        public static final int list_header_title=0x7f07001b;
-        public static final int menu_settings=0x7f07001f;
+        public static final int listViewMedicos=0x7f07002f;
+        public static final int list_header_title=0x7f07002d;
+        public static final int menu_settings=0x7f070032;
+        public static final int noPatologicos=0x7f070024;
+        public static final int noPatologicosLayout=0x7f070025;
+        public static final int noPatologicosList=0x7f070026;
         public static final int nombreUsuario=0x7f070019;
         public static final int pacienteName=0x7f070001;
+        public static final int patologicos=0x7f070021;
+        public static final int patologicosLayout=0x7f070022;
+        public static final int patologicosList=0x7f070023;
+        public static final int personaleslayout=0x7f070020;
+        public static final int simpleViewRow=0x7f070031;
+        public static final int socioEconomicos=0x7f07002a;
+        public static final int socioEconomicosLayout=0x7f07002b;
+        public static final int socioEconomicosList=0x7f07002c;
         public static final int status=0x7f070000;
-        public static final int text=0x7f07001e;
+        public static final int text=0x7f070030;
         public static final int textAddPariente=0x7f070005;
         public static final int textCelular=0x7f070013;
         public static final int textDireccion=0x7f070016;
         public static final int textEditProfile=0x7f07000b;
         public static final int textEmail=0x7f07000d;
-        public static final int textRemoveMedic=0x7f07001c;
+        public static final int textRemoveMedic=0x7f07002e;
         public static final int textStatusAddPariente=0x7f070006;
         public static final int textTelefono=0x7f070010;
     }
@@ -60,6 +79,7 @@ public final class R {
         public static final int list_header=0x7f030007;
         public static final int mis_pacientes_medic=0x7f030008;
         public static final int mis_pacientes_row=0x7f030009;
+        public static final int simple_view_row=0x7f03000a;
     }
     public static final class menu {
         public static final int activity_proyect=0x7f060000;

@@ -19,6 +19,17 @@ public class Persona {
 	public String FechaDeDefuncion;
 	public String Username;
 	public String Password;
+	public String Edad;
+
+	public String Religion;
+	public String Ocupacion;
+	public String EstadoCivil;
+	public String LugarNacimmiento;
+	public String NivelEducacion;
+	public String Raza;
+	public String Peso;
+	public String Altura;
+	public String UrlPath;
 	
 	public Persona(JSONObject json) {
 		try {
@@ -36,6 +47,16 @@ public class Persona {
 			FechaDeDefuncion = json.get("FechaDeDefuncion").toString();
 			Username = json.get("Username").toString();
 			Password = json.get("Password").toString();
+			Edad = json.get("Edad").toString();
+			Religion = json.get("Religion").toString();
+			Ocupacion = json.get("Ocupacion").toString();
+			EstadoCivil = json.get("EstadoCivil").toString();
+			LugarNacimmiento = json.get("LugarNacimmiento").toString();
+			NivelEducacion = json.get("NivelEducacion").toString();
+			Raza = json.get("Raza").toString();
+			Peso = json.get("Peso").toString();
+			Altura = json.get("Altura").toString();
+			UrlPath = json.get("UrlPath").toString();
 		} catch (JSONException e) {
 		}
 	}

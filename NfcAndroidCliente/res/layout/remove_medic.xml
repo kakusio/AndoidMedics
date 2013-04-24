@@ -12,7 +12,12 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:text="Desligar Medico" >
+        android:paddingBottom="2dip"
+        android:paddingLeft="40dip"
+        android:paddingTop="2dip"
+        android:text="Desligar Medico"
+        android:textSize="20dp"
+        android:textStyle="bold" >
     </TextView>
 
     <ListView

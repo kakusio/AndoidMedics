@@ -12,7 +12,12 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:text="Agregar Examen" >
+        android:paddingBottom="2dip"
+        android:paddingLeft="40dip"
+        android:paddingTop="2dip"
+        android:text="Agregar Examen"
+        android:textSize="20dp"
+        android:textStyle="bold" >
     </TextView>
 
     <TextView
@@ -31,6 +36,7 @@
         android:layout_alignTop="@+id/textValorMedico"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="24dp"
+        android:background="#05013ADF"
         android:ems="10" >
 
         <requestFocus />

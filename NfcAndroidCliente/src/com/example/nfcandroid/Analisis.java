@@ -15,6 +15,11 @@ public class Analisis {
 		}
 	}
 
+	public Analisis( String Descripcion, String idAnalisis) {
+		this.Descripcion = Descripcion;
+		this.idAnalisis = idAnalisis;
+	}
+
 	public Analisis() {
 	}
 }

@@ -39,11 +39,11 @@ public class ShowMesage {
 				}).show();
 	}
 
-	public void AddPariente(final CustomActivityClass medics) {
+	public void AddPariente(final CustomActivityClass medics, final String familiar) {
 		new AlertDialog.Builder(proyect).setTitle("Desea registrar a esta persona como pariente?")
 				.setPositiveButton("Si", new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface arg0, int arg1) {
-						String URL = "/api/personas/AddPariente?idPariente=" + LogginUser + "&idPersona=" + rfidId;
+						String URL = "/api/personas/AddPariente?idPariente=" + LogginUser + "&idPersona=" + rfidId + "&Familiar=" + familiar;
 						new AddExamenOParientePostToUrl(URL, medics).execute();
 					}
 				})

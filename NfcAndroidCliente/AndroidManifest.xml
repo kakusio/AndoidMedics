@@ -29,12 +29,18 @@
                 <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>        
-        <activity android:name="com.example.nfcandroid.Activities.EditProfile" />
-        <activity android:name="com.example.nfcandroid.Activities.AddExamen" />
-        <activity android:name="com.example.nfcandroid.Activities.AddPariente" />
-        <activity android:name="com.example.nfcandroid.Activities.RemoveMedic" />   
-        <activity android:name="com.example.nfcandroid.Activities.RemoveMedicDetailsActivity" />     
-        <activity android:name="com.example.nfcandroid.Activities.HistorialMedic" />       
+        <activity android:name="com.example.nfcandroid.Activities.EditProfile"
+		    android:screenOrientation="portrait" />
+        <activity android:name="com.example.nfcandroid.Activities.AddExamen"
+		    android:screenOrientation="portrait" />
+        <activity android:name="com.example.nfcandroid.Activities.AddPariente"
+		    android:screenOrientation="portrait" />
+        <activity android:name="com.example.nfcandroid.Activities.RemoveMedic"
+		    android:screenOrientation="portrait" />   
+        <activity android:name="com.example.nfcandroid.Activities.RemoveMedicDetailsActivity"
+		    android:screenOrientation="portrait" />     
+        <activity android:name="com.example.nfcandroid.Activities.HistorialMedic"
+		    android:screenOrientation="portrait" />       
     </application>
 
 </manifest>

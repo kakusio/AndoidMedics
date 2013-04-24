@@ -10,6 +10,8 @@ import android.nfc.NfcAdapter;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.Menu;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 
 import com.example.nfcandroid.R;
 import com.example.nfcandroid.Utility.ShowMesage;
@@ -20,6 +22,7 @@ public class AddPariente extends CustomActivityClass {
 	private PendingIntent mNfcPendingIntent;
 	private IntentFilter[] mNdefExchangeFilters;
 	private String LogginUser;
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +38,11 @@ public class AddPariente extends CustomActivityClass {
 		} catch (MalformedMimeTypeException e) {
 		}
 		mNdefExchangeFilters = new IntentFilter[] { ndefDetected };
+		
+
+        initItemFilter();  
 	}
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.activity_proyect, menu);
@@ -70,9 +76,10 @@ public class AddPariente extends CustomActivityClass {
 
 	private void promptForContent(final NdefMessage msg) {
 		String idPersona = new String(msg.getRecords()[0].getPayload());
+		String familiar = ((AutoCompleteTextView) findViewById(R.id.autoCompleteTextView1)).getText().toString();
 		new ShowMesage(this ,idPersona, LogginUser)
-				.AddPariente(this);
-		
+				.AddPariente(this, familiar);
+
 	}
 
 	private NdefMessage getNoteAsNdef() {
@@ -110,4 +117,17 @@ public class AddPariente extends CustomActivityClass {
 		mNfcAdapter.enableForegroundNdefPush(this, getNoteAsNdef());
 		mNfcAdapter.enableForegroundDispatch(this, mNfcPendingIntent, mNdefExchangeFilters, null);
 	}
+	
+    // initialize AutocompleteTextView
+ private void initItemFilter()
+    {
+        AutoCompleteTextView item_filter = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView1);
+        ArrayAdapter<String> mCursorAdapter = new ArrayAdapter<String>(this,R.layout.row_simple_view, arr);
+        item_filter.setAdapter(mCursorAdapter);
+        item_filter.setThreshold(1);
+    }   
+ 
+ public String[] arr = {"Padre", "Madre", "Hijo", "Hija", "Abuelo", "Abuela","Nieto", "Nieta", 
+		 "Primo", "Prima", "Tio", "Tia", "Sobrino", "Sobrina", "Hermano", "Hermana", "Pariente lejano"};
+
 }

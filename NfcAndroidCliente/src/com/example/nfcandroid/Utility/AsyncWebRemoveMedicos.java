@@ -7,11 +7,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.example.nfcandroid.Persona;
-import com.example.nfcandroid.Activities.RemoveMedic;
-
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
+
+import com.example.nfcandroid.Medico;
+import com.example.nfcandroid.Activities.RemoveMedic;
 
 public class AsyncWebRemoveMedicos extends AsyncTask<String, Integer, String>{
 	private ProgressDialog progDialog;
@@ -40,14 +40,14 @@ public class AsyncWebRemoveMedicos extends AsyncTask<String, Integer, String>{
     @Override
     protected void onPostExecute(String result) 
     {    	
-    	ArrayList<Persona> medicos = new ArrayList<Persona>();
+    	ArrayList<Medico> medicos = new ArrayList<Medico>();
     	progDialog.dismiss();
         if (result.length() == 0) return;        
         try {
 			JSONArray jarray_agendas = new JSONArray(result);
 			for(int i=0; i<jarray_agendas.length(); i++) {
 				JSONObject jobj_agenda = jarray_agendas.getJSONObject(i);	
-				medicos.add( new Persona(jobj_agenda));
+				medicos.add( new Medico(jobj_agenda));
 			}			
 		} catch (JSONException e) {
 			e.printStackTrace();

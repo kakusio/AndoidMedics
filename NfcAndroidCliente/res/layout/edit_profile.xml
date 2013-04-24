@@ -14,9 +14,11 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:paddingBottom="2dip"
-        android:paddingLeft="5dip"
+        android:paddingLeft="40dip"
         android:paddingTop="2dip"
-        android:text="Editar Perfil" >
+        android:text="Editar Perfil"
+        android:textSize="20dp"
+        android:textStyle="bold" >
     </TextView>
 
     <LinearLayout
@@ -28,17 +30,24 @@
 
         <TextView
             android:id="@+id/textEmail"
-            android:layout_width="96dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Email" />
+            android:background="#05013ADF"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="Email       " />
 
         <EditText
             android:id="@+id/editEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="#05013ADF"
             android:ems="10"
             android:inputType="textEmailAddress" >
+
+            <requestFocus />
         </EditText>
+
     </LinearLayout>
 
     <LinearLayout
@@ -50,16 +59,21 @@
 
         <TextView
             android:id="@+id/textTelefono"
-            android:layout_width="96dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Telefono" />
+            android:background="#05013ADF"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="Telefono " />
 
         <EditText
             android:id="@+id/editTelefono"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="#05013ADF"
             android:ems="10"
             android:inputType="phone" >
+
         </EditText>
     </LinearLayout>
 
@@ -72,15 +86,19 @@
 
         <TextView
             android:id="@+id/textCelular"
-            android:layout_width="96dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Celular" />
+            android:background="#05013ADF"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="Celular     " />
 
         <EditText
             android:id="@+id/editCelular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:background="#05013ADF"
             android:inputType="phone" >
         </EditText>
     </LinearLayout>
@@ -94,16 +112,20 @@
 
         <TextView
             android:id="@+id/textDireccion"
-            android:layout_width="96dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="#05013ADF"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:text="Direccion" />
 
         <EditText
             android:id="@+id/editDireccion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="10" >
-        </EditText>
+            android:background="#05013ADF"
+            android:ems="10" />
+
     </LinearLayout>
 
     <Button

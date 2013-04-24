@@ -29,10 +29,14 @@
                 <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>        
-        <activity android:name="com.example.nfcandroid.Activities.AddPaciente" />
-        <activity android:name="com.example.nfcandroid.Activities.EditProfile" />    
-        <activity android:name="com.example.nfcandroid.Activities.HistorialMedic" />   
-        <activity android:name="com.example.nfcandroid.Activities.MisPacientesMedic" />   
+        <activity android:name="com.example.nfcandroid.Activities.AddPaciente"
+		    android:screenOrientation="portrait" />
+        <activity android:name="com.example.nfcandroid.Activities.EditProfile"
+		    android:screenOrientation="portrait" />    
+        <activity android:name="com.example.nfcandroid.Activities.HistorialMedic"
+		    android:screenOrientation="portrait" />   
+        <activity android:name="com.example.nfcandroid.Activities.MisPacientesMedic"
+		    android:screenOrientation="portrait" />   
     </application>
 
 </manifest>

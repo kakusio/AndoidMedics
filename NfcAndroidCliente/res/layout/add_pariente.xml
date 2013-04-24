@@ -1,5 +1,5 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/medicslogo"
@@ -11,8 +11,13 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:text="Agregar Pariente." />
-    
+        android:paddingBottom="2dip"
+        android:paddingLeft="40dip"
+        android:paddingTop="2dip"
+        android:text="Agregar Pariente."
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
     <TextView
         android:id="@+id/textStatusAddPariente"
         android:layout_width="wrap_content"
@@ -23,5 +28,19 @@
         android:layout_marginTop="105dp"
         android:text="Acerque el NFC del pariente, para agregarlo."
         android:textAppearance="?android:attr/textAppearanceLarge" />
-     
+
+    <AutoCompleteTextView
+        android:id="@+id/autoCompleteTextView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="20dp"
+        android:ems="10"
+        android:text="Padre" >
+
+        <requestFocus />
+    </AutoCompleteTextView>
+
 </RelativeLayout>

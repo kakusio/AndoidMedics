@@ -8,13 +8,17 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Historial {
+	
 	public Persona DatosPersonales;
 	
-	public List<DescripcionViewModel> Toxicos = new ArrayList<DescripcionViewModel>();
+	public List<ToxicoViewModel> Toxicos = new ArrayList<ToxicoViewModel>();
 	public List<AlergiaViewModel> Alergias = new ArrayList<AlergiaViewModel>();
 	public List<DescripcionComentViewModel> Procedimientos = new ArrayList<DescripcionComentViewModel>();
 	public List<DescripcionComentViewModel> Enfermedades = new ArrayList<DescripcionComentViewModel>();
-	public List<DescripcionViewModel> EnfermedadesHereditarias = new ArrayList<DescripcionViewModel>();
+	public List<EnfermedadHereditariaViewModel> EnfermedadesHereditarias = new ArrayList<EnfermedadHereditariaViewModel>();
+	public List<SocioEconomicoViewModel> Socioeconomicos  = new ArrayList<SocioEconomicoViewModel>();
+	public List<TransfusionalesViewModel> Transfusionales = new ArrayList<TransfusionalesViewModel>();
+	public List<TraumaticosViewModel> Traumaticos = new ArrayList<TraumaticosViewModel>();
 	
 	public Historial(JSONObject json) {
 		try {
@@ -23,7 +27,7 @@ public class Historial {
 			JSONArray JA_toxicos = json.getJSONArray("Toxicos");
 			for(int i=0; i<JA_toxicos.length(); i++) {
 				JSONObject jobj= JA_toxicos.getJSONObject(i);	
-				Toxicos.add( new DescripcionViewModel(jobj));
+				Toxicos.add( new ToxicoViewModel(jobj));
 			}		
 			JSONArray JA_alergicos = json.getJSONArray("Alergias");
 			for(int i=0; i<JA_alergicos.length(); i++) {
@@ -44,7 +48,22 @@ public class Historial {
 			JSONArray JA_hereditarias = json.getJSONArray("EnfermedadesHereditarias");
 			for(int i=0; i<JA_hereditarias.length(); i++) {
 				JSONObject jobj= JA_hereditarias.getJSONObject(i);	
-				EnfermedadesHereditarias.add( new DescripcionViewModel(jobj));
+				EnfermedadesHereditarias.add( new EnfermedadHereditariaViewModel(jobj));
+			}	
+			JSONArray JA_economicos = json.getJSONArray("Socioeconomicos");
+			for(int i=0; i<JA_economicos.length(); i++) {
+				JSONObject jobj= JA_economicos.getJSONObject(i);	
+				Socioeconomicos.add( new SocioEconomicoViewModel(jobj));
+			}	
+			JSONArray JA_transfusionales = json.getJSONArray("Transfusionales");
+			for(int i=0; i<JA_transfusionales.length(); i++) {
+				JSONObject jobj= JA_transfusionales.getJSONObject(i);	
+				Transfusionales.add( new TransfusionalesViewModel(jobj));
+			}	
+			JSONArray JA_traumaticos = json.getJSONArray("Traumaticos");
+			for(int i=0; i<JA_traumaticos.length(); i++) {
+				JSONObject jobj= JA_traumaticos.getJSONObject(i);	
+				Traumaticos.add( new TraumaticosViewModel(jobj));
 			}		
 		} catch (JSONException e) {
 		}

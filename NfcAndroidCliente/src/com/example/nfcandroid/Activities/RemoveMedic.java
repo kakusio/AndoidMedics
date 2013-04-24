@@ -2,6 +2,7 @@ package com.example.nfcandroid.Activities;
 
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
@@ -15,14 +16,13 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.nfcandroid.Persona;
+import com.example.nfcandroid.Medico;
 import com.example.nfcandroid.R;
 import com.example.nfcandroid.StaticData;
 import com.example.nfcandroid.Utility.AsyncWebRemoveMedicos;
 import com.example.nfcandroid.Utility.Secure;
 
 public class RemoveMedic extends Activity {
-	private ArrayList<Persona> medicos;
 	String idPersona;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -53,17 +53,17 @@ public class RemoveMedic extends Activity {
 	}
 	
 	public class MyCustomAdapter extends ArrayAdapter<String> {
-		String[] arr;
-		public MyCustomAdapter(Context context, int textViewResourceId,	String[] arr) {
-			super(context, textViewResourceId, arr);
-			this.arr =arr;
+		List<Medico> medicos;
+		public MyCustomAdapter(Context context, int textViewResourceId,	ArrayList<Medico> medicos) {
+			super(context, textViewResourceId, new String[medicos.size()]);
+			this.medicos =medicos;
 		}
 		@Override
 		public View getView(final int position, View convertView, final ViewGroup parent) {			
 			View row = convertView;
 	        if(row==null){
 				LayoutInflater inflater=getLayoutInflater();
-				row=inflater.inflate(R.layout.remove_medic_row, parent, false);	
+				row=inflater.inflate(R.layout.row_remove_medic_row, parent, false);	
 			}
 	        String name = medicos.get(position).Nombres;	        
 	        TextView text=(TextView)row.findViewById(R.id.text);			
@@ -75,6 +75,8 @@ public class RemoveMedic extends Activity {
 					intent.putExtra("Apellidos", medicos.get(position).Apellidos);
 					intent.putExtra("id", idPersona);
 					intent.putExtra("idMedico", medicos.get(position).idPersona);
+					intent.putExtra("InstitucionesNombre", medicos.get(position).InstitucionesNombre);
+					intent.putExtra("EspecialidadesDescripcion", medicos.get(position).EspecialidadesDescripcion);
 					startActivity(intent);
 				}
 			});
@@ -82,14 +84,8 @@ public class RemoveMedic extends Activity {
 		}	
 	}
 
-	public void setMedicos(ArrayList<Persona> medicos) {
-		this.medicos = medicos;
-		String[] arr = new String[medicos.size()];
-		for (int i = 0; i < medicos.size(); i++) {
-			arr[i] = medicos.get(i).Nombres;  
-		}
-		
-		MyCustomAdapter listAdaper = new MyCustomAdapter(RemoveMedic.this, R.layout.remove_medic_row, arr);
+	public void setMedicos(ArrayList<Medico> medicos) {		
+		MyCustomAdapter listAdaper = new MyCustomAdapter(RemoveMedic.this, R.layout.row_remove_medic_row, medicos);
 		ListView expandableListViewMedicos = (ListView) findViewById(R.id.expandableListViewMedicos);
 		expandableListViewMedicos.setAdapter(listAdaper);
 	}

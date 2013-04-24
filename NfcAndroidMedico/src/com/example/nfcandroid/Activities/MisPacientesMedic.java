@@ -63,7 +63,7 @@ public class MisPacientesMedic extends Activity {
 			View row = convertView;
 	        if(row==null){
 				LayoutInflater inflater=getLayoutInflater();
-				row=inflater.inflate(R.layout.mis_pacientes_row, parent, false);	
+				row=inflater.inflate(R.layout.row_mis_pacientes, parent, false);	
 			}   
 	        TextView text=(TextView)row.findViewById(R.id.text);			
 			text.setText(pacientes.get(position).Nombres);
@@ -81,7 +81,7 @@ public class MisPacientesMedic extends Activity {
 	}
 
 	public void setPacientes(ArrayList<Persona> pacientes) {
-		MyCustomAdapter listAdaper = new MyCustomAdapter(MisPacientesMedic.this, R.layout.mis_pacientes_row, pacientes);
+		MyCustomAdapter listAdaper = new MyCustomAdapter(MisPacientesMedic.this, R.layout.row_mis_pacientes, pacientes);
 		ListView expandableListViewMedicos = (ListView) findViewById(R.id.listViewMedicos);
 		expandableListViewMedicos.setAdapter(listAdaper);
 	}

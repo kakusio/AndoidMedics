@@ -43,6 +43,7 @@ public class Persona {
 			TelefonoResidencial = json.get("TelefonoResidencial").toString();
 			TelefonoCelular = json.get("TelefonoCelular").toString();
 			idProvincia = json.get("idProvincia").toString();
+			Direccion =  json.get("Direccion").toString();
 			TipoDeSangre = json.get("TipoDeSangre").toString();
 			FechaDeDefuncion = json.get("FechaDeDefuncion").toString();
 			Username = json.get("Username").toString();
